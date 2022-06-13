@@ -70,7 +70,7 @@ module.exports = function(passport) {
 
         if (password.length <= 4) {
           return done(null, false, {
-            message: 'Mật khẩu phải trên 6 ký tự!'
+            message: 'Mật khẩu phải trên 4 ký tự!'
           });
         }
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

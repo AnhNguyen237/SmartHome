@@ -5,6 +5,9 @@ var bcrypt = require("bcryptjs");
 var randomstring = require("randomstring");
 
 exports.getIndexLivingroom = (req, res) => {
+  if(!req.user) {
+    return res.redirect("/login")
+  }
   res.render("index", {
     title: "Trang chủ",
     user: req.user

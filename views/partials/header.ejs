@@ -1,34 +1,51 @@
 <div class="wrapper">
-	<div class="gird">
-		<div class="header-navbar__items">
-			<div class="header__logo">
-				<a href="/">
-					<h1 class="logo"><i class="fa-solid fa-house-signal"></i>SMART HOME</h1>
-				</a>
-			</div>
-			<div class="accounts">
-				<ul>
-					<i class="fa-solid fa-user"></i>
-					<%if (typeof(user) === 'undefined') { %>
-						<li class="header__link-item"><a href="/register" class="header-link">Register |</a></li>
-				
-						<li class="header__link-item"><a href="/login" class="header-link">Login</a></li>
-					<% } %>
-					<%if (typeof(user) !== 'undefined') { %>
-						<li class="header-logined">
-							<a href="#" class="header-link">Xin chào, Nguyễn Thế Anh</a>
-							<div class="header-account">
-								<ul class="header-account__item">
-									<% if(!user.isAuthenticated) {%>
-										<li><a href="/verify-email" class="link-account"><i class="fa-solid fa-envelope"></i>Xác thực email</a></li>
-									<% } %>
-									<li><a href="/logout" class="link-account"><i class="fa-solid fa-right-from-bracket"></i></i>Đăng xuất</a></li>
-								</ul>
-							</div>
-						</li>
-					<% } %>
-				</ul>
-			</div>
-		</div>   
-	</div>
-</div>
+    <div class="gird">
+        <div class="header-navbar__items">
+            <div class="header__logo">
+                <a href="/">
+                    <h1 class="logo">
+                        <i class="fa-solid fa-house-signal"></i>SMART HOME</h1>
+                </a>
+            </div>
+            <div class="accounts">
+                <ul>
+                    <i class="fa-solid fa-user"></i>
+                    <%if (typeof(user) === 'undefined') { %>
+                        <li class="header__link-item">
+                            <a href="/register" class="header-link">Đăng ký |</a>
+                        </li>
+
+                        <li class="header__link-item">
+                            <a href="/login" class="header-link">Đăng nhập</a>
+                        </li>
+                    <% } %>
+                    <%if (typeof(user) !== 'undefined') { %>
+                        <li class="header-logined">
+                            <a href="#" class="header-link">Xin chào,
+                                <%= user.username %></a>
+                            <div class="header-account">
+                                <ul class="header-account__item">
+                                    <% if(!user.isAuthenticated) {%>
+                                        <li>
+                                            <a href="/verify-email" class="link-account">
+                                                <i class="fa-solid fa-envelope"></i>Xác thực email</a>
+                                        </li>
+                                    <% } else { %>
+                                        <li>
+                                            <a href="/change-password" class="link-account">
+                                                <i class="fa-solid fa-lock"></i>Đổi mật khẩu</a>
+                                        </li>
+                                    <% } %>
+                                    <li>
+                                        <a href="/logout" class="link-account">
+                                            <i class="fa-solid fa-right-from-bracket"></i>
+                                        </i>Đăng xuất</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</div></div>

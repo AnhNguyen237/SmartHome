@@ -80,11 +80,11 @@ exports.getVerifyEmail = async (req, res, next) => {
         var verification_token = randomstring.generate({length: 10});
 
         Users.findOne({username: req.user.username}).then(user => {
-            var mainOptions = {
+            let mainOptions = {
                 from: "SmartHome web",
                 to: req.user.email,
-                subject: "Send verify token",
-                html: "<p>Your SmartHome account activation code is: </p>" + verification_token
+                subject: "Gửi mã xác thực",
+                html: "<p>Mã xác thực của bạn là: </p>" + verification_token
             };
             transporter.sendMail(mainOptions);
 
@@ -129,45 +129,53 @@ exports.getForgotPass = (req, res, next) => {
     });
 };
 
-exports.postForgotPass = (req, res, next) => {
-    const email = req.body.email;
-    Users.findOne({
-        email: email
-    }, (err, user) => {
-        if (!user) {
-            req.flash("error", "Invalid email!");
-            return res.redirect("/forgot-password");
-        } else {
-            var transporter = nodemailer.createTransport({
-                service: "Gmail",
-                auth: {
-                    user: "nocodenolife2527@gmail.com",
-                    pass: "password2527@"
-                }
-            });
-            var newpass = randomstring.generate({length: 6});
-            var mainOptions = {
-                from: "SmartHome web",
-                to: email,
-                subject: "forget password",
-                text: "",
-                html: "<p>Your new password is:</p>" + newpass
-            };
-            transporter.sendMail(mainOptions, (err, info) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log("Sent:" + info.response);
-                }
-            });
-            bcrypt.hash(newpass, 12).then(hashPassword => {
-                user.password = hashPassword;
-                user.save();
-            });
+exports.postForgotPass = async (req, res, next) => {
+    try {
+        const myAccessTokenObject = await myOAuth2Client.getAccessToken()
 
-            res.redirect("/login");
-        }
-    });
+        const myAccesstToken = myAccessTokenObject ?. token
+
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                type: 'OAuth2',
+                user: ADMIN_EMAIL_ADDRESS,
+                clientId: GOOGLE_MAILER_CLIENT_ID,
+                clientSecret: GOOGLE_MAILER_CLIENT_SECRET,
+                refreshToken: GOOGLE_MAILER_REFRESH_TOKEN,
+                accessToken: myAccesstToken
+            }
+        });
+
+        const email = req.body.email;
+        
+        Users.findOne({
+            email: email
+        }).then( user => {
+            if (!user) {
+                req.flash("error", "Invalid email!");
+                return res.redirect("/forgot-password");
+            } else {
+                    var newpass = randomstring.generate({length: 6});
+                    let mainOptions = {
+                        from: "SmartHome web",
+                        to: email,
+                        subject: "Quên mật khẩu",
+                        html: "<p>Mật khẩu mới của bạn là: </p>" + newpass
+                    };
+                    transporter.sendMail(mainOptions);
+            
+                    bcrypt.hash(newpass, 12).then(hashPassword => {
+                        user.password = hashPassword;
+                        user.save();
+                    });
+                    res.redirect("/login");
+                }
+            });
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({errors: error.message})
+    }
 };
 
 exports.getChangePassword = (req, res, next) => {

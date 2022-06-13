@@ -1,6 +1,6 @@
 .wrapper {
   height: 118px;
-  background-color: red;
+  background-color: #9c5050;
 }
 
 .gird {
@@ -74,7 +74,7 @@
   width: 128px;
   background-color: var(--white-color);
   position: absolute;
-  left: 86px;
+  left: 28px;
   top: 118%;
   animation: fadeIn ease-in 0.3s;
 }
@@ -91,9 +91,9 @@
 .header-account::after {
   position: absolute;
   content: "";
-  right: 41px;
+  right: 0px;
   top: -7px;
-  width: 100px;
+  width: 142px;
   height: 15px;
 }
 
