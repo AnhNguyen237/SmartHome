@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
+    <% include partials/loader %>
+    <header>
+      <% include partials/header %>
+    </header>
+    <div class="wrap-form">
+      <div class="tt-item">
+        <h2 class="tt-title">
+          Vui lòng nhập mã xác thực đã gửi đến email <%= user.email %>
+        </h2>
+        <%if (message != "undefined") { %>
+        <div
+          class="form-group error"
+          style="background-color: #FFCCCC; font-weight: bold; color : rgb(210, 29, 29)"
+        >
+          <%= message %>
+        </div>
+        <% } %>
+        <div class="form-default">
+          <form
+            id="createaccount"
+            method="post"
+            novalidate="novalidate"
+            action="/verify-email"
+          >
+            <div class="form-group">
+              <div class="form-control">
+                <input
+                type="text"
+                name="token"
+                class="input-style"
+                id="confirm"
+                placeholder="Mã xác thực"
+              />
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-submit" type="submit">
+                Xác thực
+              </button>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <% include partials/footer %>
+    </footer>
+    <% include partials/script %>
+  </body>
+</html>

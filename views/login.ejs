@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
+    <% include partials/loader %>
+    <header>
+      <% include partials/header %>
+    </header>
+    <div class="wrap-form">
+      <div class="tt-item">
+        <h1 class="tt-title">Login</h1>
+        <div class="login-form">
+          <form
+            id="customer_login"
+            method="POST"
+            novalidate="novalidate"
+            action="/login"
+          >
+            <%if (message != "undefined") { %>
+            <div
+              class="form-group error"
+              style="font-size: 1.5rem; font-weight: bold; color : rgb(210, 29, 29)"
+            >
+              <%= message %>
+            </div>
+            <% } %>
+
+            <div class="form-group">
+              <div class="form-control">
+                <i class="fa-solid fa-user"></i>
+                <input
+                type="text"
+                name="username"
+                class="input-style"
+                id="username"
+                placeholder="Username"
+              />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-control">
+                <i class="fa-solid fa-lock"></i>
+                <input
+                type="password"
+                name="password"
+                class="input-style"
+                id="password"
+                placeholder="Password"
+              />
+              </div>
+              
+            </div>
+            <div class="form-group" style="justify-content: space-between;">
+              <div style="display: flex; align-items: center; font-size: 13px">
+                <input type="checkbox"/><p style="color: white;">Remember me</p>
+              </div>
+              <a href="/forgot-password" class="header-link">Forgot password?</a>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-submit" type="submit">
+                Login
+              </button>
+            </div>
+            <div class="form-group">
+              <p style="color: white; font-size: 13px;">New here?</p>
+              <a href="/register" class="header-link" style="font-size: 1.5rem; font-weight: bolder; padding-left: 5px;">Register</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <% include partials/footer %>
+    </footer>
+    <a href="#" class="tt-back-to-top">BACK TO TOP</a>
+    <% include partials/script %>
+  </body>
+</html>
