@@ -1,8 +1,8 @@
 require('dotenv').config();
 
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
+const createError = require('http-errors')
+const express = require('express')
+const path = require('path')
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
@@ -20,8 +20,12 @@ const urlConnect = process.env.DB;
 
 // Connect to database
 mongoose.connect(urlConnect, err => {
-  if (err) throw err;
-  console.log('Connect successfullyy!!');
+    if (err) 
+        throw err;
+    
+
+
+    console.log('Connect successfullyy!!');
 });
 
 // view engine setup
@@ -29,19 +33,21 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(flash());
-app.use(
-  session({
+app.use(session({
     secret: 'notsecret',
     saveUninitialized: true,
     resave: false,
-    store: new MongoDBStore({ uri: process.env.DB, collection: 'sessions' }),
-    cookie: { maxAge: 180 * 60 * 1000 }
-  })
-);
+    store: new MongoDBStore(
+        {uri: process.env.DB, collection: 'sessions'}
+    ),
+    cookie: {
+        maxAge: 180 * 60 * 1000
+    }
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -53,8 +59,10 @@ app.use(authRouter);
 app.use(userRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(function (req, res, next) {
+    next(createError(404));
 });
+
+let server = app.listen(process.env.PORT || 3000)
 
 module.exports = app;
