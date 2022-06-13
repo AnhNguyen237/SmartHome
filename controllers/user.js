@@ -2,12 +2,13 @@ const passport = require("passport");
 const nodemailer = require("nodemailer");
 const {OAuth2Client} = require("google-auth-library");
 const Users = require("../models/user");
+const key = require("../key")
 var bcrypt = require("bcryptjs");
 var randomstring = require("randomstring");
-const GOOGLE_MAILER_CLIENT_ID = process.env.ClientID;
-const GOOGLE_MAILER_CLIENT_SECRET = process.env.ClientSecret;
-const GOOGLE_MAILER_REFRESH_TOKEN = process.env.RefreshToken;
-const ADMIN_EMAIL_ADDRESS = process.env.EmailAddress;
+const GOOGLE_MAILER_CLIENT_ID = key.ClientID;
+const GOOGLE_MAILER_CLIENT_SECRET = key.ClientSecret;
+const GOOGLE_MAILER_REFRESH_TOKEN = key.RefreshToken;
+const ADMIN_EMAIL_ADDRESS = key.EmailAddress;
 const myOAuth2Client = new OAuth2Client(GOOGLE_MAILER_CLIENT_ID, GOOGLE_MAILER_CLIENT_SECRET)
 
 myOAuth2Client.setCredentials({refresh_token: GOOGLE_MAILER_REFRESH_TOKEN})

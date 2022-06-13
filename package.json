@@ -1,10 +1,14 @@
 {
   "name": "smarthome",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "iot lab",
+  "engines": {
+    "node": "16.x"
+  },
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -33,9 +37,14 @@
     "morgan": "^1.10.0",
     "nodemon": "^1.19.4"
   },
-  "description": "",
-  "main": "app.js",
-  "repository": {},
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnhNguyen237/SmartHome.git"
+  },
+  "author": "anhnguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnhNguyen237/SmartHome/issues"
+  },
+  "homepage": "https://github.com/AnhNguyen237/SmartHome#readme"
 }
