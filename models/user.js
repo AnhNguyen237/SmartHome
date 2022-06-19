@@ -8,23 +8,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  firstName: {
-    type: String,
-    required: false
-  },
-  lastName: {
-    type: String,
-    required: false
-  },
   email: {
-    type: String,
-    required: false
-  },
-  address: {
-    type: String,
-    required: false
-  },
-  phoneNumber: {
     type: String,
     required: false
   },
@@ -33,15 +17,22 @@ const userSchema = new mongoose.Schema({
     required: false,
     default: false
   },
-  isLock: {
-    type: Boolean,
-    required: false,
-    default: false
-  },
   verify_token: {
     type: String,
     required: false
-  }
+  },
+  homeModel: [
+    {
+      homeName: {
+        type: String,
+        required: false
+      },
+      homeId: {
+        type: String,
+        required: false
+      }
+    }
+  ]
 });
 
 const User = mongoose.model('User', userSchema);

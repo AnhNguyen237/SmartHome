@@ -11,29 +11,35 @@
     <div class="wrap-form">
       <div class="tt-item">
         <h2 class="tt-title">
-          Vui lòng nhập mã xác thực đã gửi đến email <%= user.email %>
+          Liên kết với SmartHome
         </h2>
         <%if (message != "undefined") { %>
-          <div class="form-group error" style="font-size: 1.5rem; font-weight: bold; color : rgb(232, 129, 129)">
+            <div class="form-group error" style="font-size: 1.5rem; font-weight: bold; color : rgb(232, 129, 129)">
           <%= message %>
         </div>
         <% } %>
         <div class="form-default">
           <form
-            id="verify-email"
+            id="verify-home"
             method="post"
             novalidate="novalidate"
-            action="/verify-email"
+            action="/verify-home"
           >
             <div class="form-group">
-              <div class="form-control" style="width: auto">
-                <i class="fa-solid fa-key"></i>
+              <div class="form-control">
+                <i class="fa-solid fa-house-user"></i>
+                  <input type="text" name="homeName" class="input-style" id="homeName" placeholder="Home's Name"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-control">
+                <i class="fa-solid fa-building-shield"></i>
                 <input
                 type="text"
-                name="token"
+                name="homeId"
                 class="input-style"
                 id="confirm"
-                placeholder="Mã xác thực"
+                placeholder="Home's Id"
               />
               </div>
             </div>

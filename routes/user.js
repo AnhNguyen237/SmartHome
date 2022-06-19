@@ -7,6 +7,10 @@ router.get("/login", userController.getLogin);
 
 router.post("/login", userController.postLogin);
 
+router.get("/verify-home", userController.getVerifyHome);
+
+router.post("/verify-home", userController.postVerifyHome);
+
 router.get("/logout", userController.getLogout);
 
 router.get("/register", userController.getSignUp);

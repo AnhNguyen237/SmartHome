@@ -1,6 +1,5 @@
 require('dotenv').config();
 
-const createError = require('http-errors')
 const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser');
@@ -57,11 +56,6 @@ require('./config/passport')(passport);
 
 app.use(authRouter);
 app.use(userRouter);
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    next(createError(404));
-});
 
 let server = app.listen(process.env.PORT || 3000)
 

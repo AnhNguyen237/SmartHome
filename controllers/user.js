@@ -2,9 +2,11 @@ const passport = require("passport");
 const nodemailer = require("nodemailer");
 const {OAuth2Client} = require("google-auth-library");
 const Users = require("../models/user");
+const Homes = require("../models/home");
 const key = require("../key")
 var bcrypt = require("bcryptjs");
 var randomstring = require("randomstring");
+const User = require("../models/user");
 const GOOGLE_MAILER_CLIENT_ID = key.ClientID;
 const GOOGLE_MAILER_CLIENT_SECRET = key.ClientSecret;
 const GOOGLE_MAILER_REFRESH_TOKEN = key.RefreshToken;
@@ -18,8 +20,7 @@ exports.getLogin = (req, res, next) => {
     if (!req.isAuthenticated()) {
         res.render("login", {
             title: "Đăng nhập",
-            message: `${message}`,
-            user: req.user
+            message: `${message}`
         });
     } else {
         res.redirect("/");
@@ -34,6 +35,35 @@ exports.postLogin = (req, res, next) => {
     })(req, res, next);
 };
 
+exports.getVerifyHome = (req, res, next) => {
+    const message = req.flash("error")[0];
+    res.render ("verify-home", {
+        title: "Verify home",
+        message: `${message}`,
+        user: req.user
+    })
+};
+
+exports.postVerifyHome = (req, res, next) => {
+    var homeName = req.body.homeName;
+    var homeId = req.body.homeId;
+
+    Homes.findOne({homeName: homeName})
+        .then( home => {
+            if(!home || home.homeId != homeId) {
+                req.flash("error", "Home's name hoặc Home's id không đúng!");
+                return res.redirect("/verify-home")
+            }
+            req.user.homeModel[home.homeIndex] = {
+                homeName: homeName,
+                homeId: homeId
+            }
+
+            req.user.save();
+            return res.redirect("/");
+        })
+};
+
 exports.getLogout = (req, res, next) => {
     req.logout();
     res.redirect("/");
@@ -44,8 +74,7 @@ exports.getSignUp = (req, res, next) => {
     if (!req.isAuthenticated()) {
         res.render("register", {
             title: "Đăng ký",
-            message: `${message}`,
-            user: req.user
+            message: `${message}`
         });
     } else {
         res.redirect("/");
@@ -114,7 +143,7 @@ exports.postVerifyEmail = (req, res, next) => {
             user.save();
             return res.redirect("/login");
         } else if (token != user.verify_token) {
-            req.flash("error", "Invalid verification code!");
+            req.flash("error", "Mã xác thực không hợp lệ!");
             return res.redirect("/verify-email");
         }
     });

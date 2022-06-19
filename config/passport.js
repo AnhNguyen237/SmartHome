@@ -33,12 +33,6 @@ module.exports = function(passport) {
           });
         }
 
-        if (user.isLock) {
-          return done(null, false, {
-            message: 'Tài khoản đã bị khoá.'
-          });
-        }
-
         bcrypt.compare(password, user.password, function(err, result) {
           if (err) {
             return done(err);
