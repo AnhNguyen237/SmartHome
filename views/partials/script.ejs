@@ -1,40 +1,553 @@
 <script src="/external/jquery/jquery.min.js"></script>
 <script src="/external/bootstrap/js/bootstrap.min.js"></script>
-<script>
-  $(".add-cart").click(function(e) {
-    const id = $(this).attr("data-id");
-    $.ajax({
-      url: "/add-to-cart/" + id,
-      method: "GET",
-      success: data => {
-        $(".box-cart").load(" .box-cart > *");
-      }
-    });
-  });
+<script type="text/javascript">
+  // Livingroom
+  const lampStatus_liv = "lampStatus-liv";
+    const lampAuto_liv = "lampAuto-liv";
+    const airStatus_liv = "airStatus-liv";
+    const airAuto_liv = "airAuto-liv";
+    const airSpeedFan_liv = "airSpeedFan-liv";
+    const airTemp_liv = "airTemp-liv";
+    const teleStatus_liv = "teleStatus-liv";
+    const teleAuto_liv = "teleAuto-liv";
+    const teleVolume_liv = "teleVolume-liv";
+    const teleChannel_liv = "teleChannel-liv";
+    const chan_liv = "chan-liv";
+    const fanStatus_liv = "fanStatus-liv";
+    const fanAuto_liv = "fanAuto-liv";
+    const fanSpeed_liv = "fanSpeed-liv";
+    const doorStatus_liv = "doorStatus-liv";
+    const curtainStatus_liv = "curtainStatus-liv";
+    const curtainAuto_liv = "curtainAuto-liv";
+    const windowStatus_liv = "windowStatus-liv";
+    const windowAuto_liv = "windowAuto-liv";
+    const nebulStatus_liv = "nebulStatus-liv";
+    const nebulAuto_liv = "nebulAuto-liv";
 
+    // Bedroom1
+    const lampStatus_bed1 = "lampStatus-bed1";
+    const lampAuto_bed1 = "lampAuto-bed1";
+    const airStatus_bed1 = "airStatus-bed1";
+    const airAuto_bed1 = "airAuto-bed1";
+    const airSpeedFan_bed1 = "airSpeedFan-bed1";
+    const airTemp_bed1 = "airTemp-bed1";
+    const teleStatus_bed1 = "teleStatus-bed1";
+    const teleAuto_bed1 = "teleAuto-bed1";
+    const teleVolume_bed1 = "teleVolume-bed1";
+    const teleChannel_bed1 = "teleChannel-bed1";
+    const chan_bed1 = "chan-bed1";
+    const fanStatus_bed1 = "fanStatus-bed1";
+    const fanAuto_bed1 = "fanAuto-bed1";
+    const fanSpeed_bed1 = "fanSpeed-bed1";
+    const doorStatus_bed1 = "doorStatus-bed1";
+    const curtainStatus_bed1 = "curtainStatus-bed1";
+    const curtainAuto_bed1 = "curtainAuto-bed1";
+    const windowStatus_bed1 = "windowStatus-bed1";
+    const windowAuto_bed1 = "windowAuto-bed1";
+    const nebulStatus_bed1 = "nebulStatus-bed1";
+    const nebulAuto_bed1 = "nebulAuto-bed1";
+
+
+    // Bedroom2
+    const lampStatus_bed2 = "lampStatus-bed2";
+    const lampAuto_bed2 = "lampAuto-bed2";
+    const airStatus_bed2 = "airStatus-bed2";
+    const airAuto_bed2 = "airAuto-bed2";
+    const airSpeedFan_bed2 = "airSpeedFan-bed2";
+    const airTemp_bed2 = "airTemp-bed2";
+    const teleStatus_bed2 = "teleStatus-bed2";
+    const teleAuto_bed2 = "teleAuto-bed2";
+    const teleVolume_bed2 = "teleVolume-bed2";
+    const teleChannel_bed2 = "teleChannel-bed2";
+    const chan_bed2 = "chan-bed2";
+    const fanStatus_bed2 = "fanStatus-bed2";
+    const fanAuto_bed2 = "fanAuto-bed2";
+    const fanSpeed_bed2 = "fanSpeed-bed2";
+    const doorStatus_bed2 = "doorStatus-bed2";
+    const curtainStatus_bed2 = "curtainStatus-bed2";
+    const curtainAuto_bed2 = "curtainAuto-bed2";
+    const windowStatus_bed2 = "windowStatus-bed2";
+    const windowAuto_bed2 = "windowAuto-bed2";
+    const nebulStatus_bed2 = "nebulStatus-bed2";
+    const nebulAuto_bed2 = "nebulAuto-bed2";
+
+    //Kitchen
+    const lampAuto_kit = "lampAuto-kit";
+    const lampStatus_kit = "lampStatus-kit";
+    const fanStatus_kit = "fanStatus-kit";
+    const fanAuto_kit = "fanAuto-kit";
+    const fanSpeed_kit = "fanSpeed-kit";
+    const stoveStatus_kit = "stoveStatus-kit";
+    const stoveAuto_kit = "stoveAuto-kit";
+    const stoveTimer_kit = "stoveTimer-kit";
+    const hoodStatus_kit = "hoodStatus-kit";
+    const hoodAuto_kit = "hoodAuto-kit";
+
+
+    // Bathroom
+    const lampStatus_bath = "lampStatus-bath";
+    const lampAuto_bath = "lampAuto-bath";
+    const heaterStatus_bath = "heaterStatus-bath";
+    const heaterAuto_bath = "heaterAuto-bath";
+    const heaterTimer_bath = "heaterTimer-bath";
+    const washingStatus_bath = "washingStatus-bath";
+    const washingAuto_bath = "washingAuto-bath";
+    const washingMode_bath = "washingMode-bath";
+    const washingWater_bath = "washingWater-bath";
+    const mode_bath = "mode-bath";
+    const water_bath = "water-bath";
+
+
+    function getCheckBox(idCheck, device) {
+    var deviceCheck = document.getElementById(idCheck);
+    if(device) {
+      deviceCheck.checked = false;
+    } else {
+      deviceCheck.checked = true;
+    }
+  };
+  function getChangeValue(idValue, device) {
+    var valueBox = document.getElementById(idValue);
+    valueBox.value = device;
+  }
+
+  function getDisplaySelected(optionSelected, idSelect, selected) {
+    var optionSelectedElement = document.getElementsByClassName(optionSelected);
+    var options = document.getElementById(idSelect).children;
+    for (var i = 0; i < options.length; i++){
+        if (options[i].value == selected){
+            optionSelectedElement[i].selected = "true";
+        }
+    }
+  };
+
+  function postCheckBox(idCheck) {
+    var deviceCheck = document.getElementById(idCheck);
+    if(deviceCheck.checked) {return false;}
+    else {return true;}
+  }
+
+  function postChangeValue(idValue) {
+    var valueBox = document.getElementById(idValue);
+    return valueBox.value;
+  }
+
+  function postDisplaySelected(idSelect) {
+    var options = document.getElementById(idSelect).children;
+ 
+      for (var i = 0; i < options.length; i++){
+          if (options[i].selected){
+              return options[i].value;
+          }
+      }
+  };
+
+  function postData(data, callback) {
+    var options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: data
+    };
+    fetch('/data/update', options)
+        .then(function(response) {
+            response.json();
+        })
+        .then(callback)
+        .catch(function(err) {
+            alert('Failed!!!');
+        })
+}
+
+  
   $('input.input-qty').each(function() {
-  var $this = $(this),
+    var $this = $(this),
     qty = $this.parent().find('.is-form'),
     min = Number($this.attr('min')),
     max = Number($this.attr('max'))
-  if (min == 0) {
-    var d = 0
-  } else d = min
-  $(qty).on('click', function() {
-    if ($(this).hasClass('minus')) {
-      if (d > min) d += -1
-    } else if ($(this).hasClass('plus')) {
-      var x = Number($this.val()) + 1
-      if (x <= max) d += 1
-    }
-    $this.attr('value', d).val(d)
+    if (min == 0) {
+      var d = 0
+    } else d = min
+    $(qty).on('click', function() {
+      if ($(this).hasClass('minus')) {
+        if (d > min) d += -1
+      } else if ($(this).hasClass('plus')) {
+        var x = Number($this.val()) + 1
+        if (x <= max) d += 1
+      }
+      $this.attr('value', d).val(d)
+    })
   })
-})
 
+  $(document).ready(function(){
+    let path = window.location.pathname;
+    let lastUpdateTime;
+    let cache;
+
+    setInterval(function() {
+      $.get("/data/get", function(data){
+        if(data && lastUpdateTime != data.updateTime) {
+          console.log("Có cập nhật mới");
+          cache = data;
+          lastUpdateTime = data.updateTime;
+
+
+          var temp = data.temp + "";
+          var humd = data.humd + "";
+
+
+          var Livingroom = data.room[0].roomDevice;
+
+          var Bedroom1 = data.room[1].roomDevice;
+
+          var Bedroom2 = data.room[2].roomDevice;
+
+          var Kitchen = data.room[3].roomDevice;
+
+          var Bathroom = data.room[4].roomDevice;
+
+          var tempElement = document.getElementsByClassName("temp");
+          var humdElement = document.getElementsByClassName("humd");
+          for (let x of tempElement) {
+            x.innerHTML = temp + "&degC";
+          }
+          for (let x of humdElement) {
+            x.innerHTML = humd + "&#37";
+          }
+
+          if(path == '/living-room' || path == '/') {
+            // Conduct function Livingroom
+            getCheckBox(lampStatus_liv, Livingroom[0].status);
+            getCheckBox(airStatus_liv, Livingroom[1].status);
+            getCheckBox(teleStatus_liv, Livingroom[2].status);
+            getCheckBox(teleAuto_liv, Livingroom[2].auto);
+            getCheckBox(fanStatus_liv, Livingroom[3].status);
+            getCheckBox(nebulStatus_liv, Livingroom[4].status);
+            getCheckBox(curtainStatus_liv, Livingroom[5].status);
+            getCheckBox(windowStatus_liv, Livingroom[6].status);
+            getCheckBox(doorStatus_liv, Livingroom[7].status);
+
+            getCheckBox(lampAuto_liv, Livingroom[0].auto); 
+            getCheckBox(airAuto_liv, Livingroom[1].auto);
+            getCheckBox(fanAuto_liv, Livingroom[3].auto);
+            getCheckBox(nebulAuto_liv, Livingroom[4].auto);
+            getCheckBox(curtainAuto_liv, Livingroom[5].auto);
+            getCheckBox(windowAuto_liv, Livingroom[6].auto);
+
+            getChangeValue(airSpeedFan_liv, Livingroom[1].speedFanAir);
+            getChangeValue(airTemp_liv, Livingroom[1].tempAir);
+            getChangeValue(teleVolume_liv, Livingroom[2].volume);
+            getDisplaySelected(chan_liv, teleChannel_liv, Livingroom[2].channel)
+            getChangeValue(fanSpeed_liv, Livingroom[3].speedFan);
+            // Conduct function Livingroom
+          }
+
+
+          if(path == '/bedroom-1') {
+            // Conduct function Bedroom1
+            getCheckBox(lampStatus_bed1, Bedroom1[0].status);
+            getCheckBox(airStatus_bed1, Bedroom1[1].status);
+            getCheckBox(teleStatus_bed1, Bedroom1[2].status);
+            getCheckBox(teleAuto_bed1, Bedroom1[2].auto);
+            getCheckBox(fanStatus_bed1, Bedroom1[3].status);
+            getCheckBox(nebulStatus_bed1, Bedroom1[4].status);
+            getCheckBox(curtainStatus_bed1, Bedroom1[5].status);
+            getCheckBox(windowStatus_bed1, Bedroom1[6].status);
+            getCheckBox(doorStatus_bed1, Bedroom1[7].status);
+
+            getCheckBox(lampAuto_bed1, Bedroom1[0].auto); 
+            getCheckBox(airAuto_bed1, Bedroom1[1].auto);
+            getCheckBox(fanAuto_bed1, Bedroom1[3].auto);
+            getCheckBox(nebulAuto_bed1, Bedroom1[4].auto);
+            getCheckBox(curtainAuto_bed1, Bedroom1[5].auto);
+            getCheckBox(windowAuto_bed1, Bedroom1[6].auto);
+
+            getChangeValue(airSpeedFan_bed1, Bedroom1[1].speedFanAir);
+            getChangeValue(airTemp_bed1, Bedroom1[1].tempAir);
+            getChangeValue(teleVolume_bed1, Bedroom1[2].volume);
+            getDisplaySelected(chan_bed1, teleChannel_bed1, Bedroom1[2].channel)
+            getChangeValue(fanSpeed_bed1, Bedroom1[3].speedFan);
+            // Conduct function Bedroom1
+          }
+
+
+          if(path == '/bedroom-2') {
+            // Conduct function Bedroom2
+            getCheckBox(lampStatus_bed2, Bedroom2[0].status);
+            getCheckBox(airStatus_bed2, Bedroom2[1].status);
+            getCheckBox(teleStatus_bed2, Bedroom2[2].status);
+            getCheckBox(teleAuto_bed2, Bedroom2[2].auto);
+            getCheckBox(fanStatus_bed2, Bedroom2[3].status);
+            getCheckBox(nebulStatus_bed2, Bedroom2[4].status);
+            getCheckBox(curtainStatus_bed2, Bedroom2[5].status);
+            getCheckBox(windowStatus_bed2, Bedroom2[6].status);
+            getCheckBox(doorStatus_bed2, Bedroom2[7].status);
+
+            getCheckBox(lampAuto_bed2, Bedroom2[0].auto); 
+            getCheckBox(airAuto_bed2, Bedroom2[1].auto);
+            getCheckBox(fanAuto_bed2, Bedroom2[3].auto);
+            getCheckBox(nebulAuto_bed2, Bedroom2[4].auto);
+            getCheckBox(curtainAuto_bed2, Bedroom2[5].auto);
+            getCheckBox(windowAuto_bed2, Bedroom2[6].auto);
+
+            getChangeValue(airSpeedFan_bed2, Bedroom2[1].speedFanAir);
+            getChangeValue(airTemp_bed2, Bedroom2[1].tempAir);
+            getChangeValue(teleVolume_bed2, Bedroom2[2].volume);
+            getDisplaySelected(chan_bed2, teleChannel_bed2, Bedroom2[2].channel)
+            getChangeValue(fanSpeed_bed2, Bedroom2[3].speedFan);
+            // Conduct function Bedroom2
+
+          }
+
+          if(path == '/kitchen') {
+            // Conduct function Kitchen
+            getCheckBox(lampStatus_kit, Kitchen[0].status);
+            getCheckBox(fanStatus_kit, Kitchen[1].status);
+            getCheckBox(stoveStatus_kit, Kitchen[2].status);
+            getCheckBox(hoodStatus_kit, Kitchen[3].status);
+
+            getCheckBox(lampAuto_kit, Kitchen[0].auto);
+            getCheckBox(fanAuto_kit, Kitchen[1].auto);
+            getCheckBox(stoveAuto_kit, Kitchen[2].auto);
+            getCheckBox(hoodAuto_kit, Kitchen[3].auto);
+
+            getChangeValue(fanSpeed_kit, Kitchen[1].speedFan);
+            getChangeValue(stoveTimer_kit, Kitchen[2].timer);
+            // Conduct function Kitchen
+
+          }
+
+          if(path == '/bathroom') {
+            // Conduct function Bathroom
+            getCheckBox(lampStatus_bath, Bathroom[0].status);
+            getCheckBox(heaterStatus_bath, Bathroom[1].status);
+            getCheckBox(washingStatus_bath, Bathroom[2].status);
+
+            getCheckBox(lampAuto_bath, Bathroom[0].auto);
+            getCheckBox(heaterAuto_bath, Bathroom[1].auto);
+            getCheckBox(washingAuto_bath, Bathroom[2].auto);
+
+            getChangeValue(heaterTimer_bath, Bathroom[1].timer);
+
+            getDisplaySelected(mode_bath, washingMode_bath, Bathroom[2].mode)
+            getDisplaySelected(water_bath, washingWater_bath, Bathroom[2].water)
+            // Conduct function Bathroom
+          } 
+        }
+      });
+    }, 500);
+
+    setTimeout(function() {
+      $('.post').click(function() {
+        if(cache) {
+          if (path == '/living-room' || path == '/') {
+          cache.room[0].roomDevice = [
+                    {
+                        diviceName: 'Đèn',
+                        status: postCheckBox(lampStatus_liv),
+                        auto: postCheckBox(lampAuto_liv)
+                    },
+                    {
+                        diviceName: 'Điều hòa',
+                        status: postCheckBox(airStatus_liv),
+                        auto: postCheckBox(airAuto_liv),
+                        speedFanAir: postChangeValue(airSpeedFan_liv),
+                        tempAir: postChangeValue(airTemp_liv)
+                    },
+                    {
+                        diviceName: 'Tivi',
+                        status: postCheckBox(teleStatus_liv),
+                        auto: postCheckBox(teleAuto_liv),
+                        volume: postChangeValue(teleVolume_liv),
+                        channel: postDisplaySelected(teleChannel_liv)
+                    },
+                    {
+                        diviceName: 'Quạt',
+                        status: postCheckBox(fanStatus_liv),
+                        auto: postCheckBox(fanAuto_liv),
+                        speedFan: postChangeValue(fanSpeed_liv)
+                    },
+                    {
+                        diviceName: 'Máy phun sương',
+                        status: postCheckBox(nebulStatus_liv),
+                        auto: postCheckBox(nebulAuto_liv)
+                    },
+                    {
+                        diviceName: 'Rèm cửa',
+                        status: postCheckBox(curtainStatus_liv),
+                        auto: postCheckBox(curtainAuto_liv)
+                    },
+                    {
+                        diviceName: 'Cửa sổ',
+                        status: postCheckBox(windowStatus_liv),
+                        auto: postCheckBox(windowAuto_liv)
+                    },
+                    {
+                        diviceName: 'Cửa',
+                        status: postCheckBox(doorStatus_liv)
+                    }
+                ]
+        }
+
+          if (path == '/bedroom-1') {
+            cache.room[1].roomDevice = [
+                      {
+                          diviceName: 'Đèn',
+                          status: postCheckBox(lampStatus_bed1),
+                          auto: postCheckBox(lampAuto_bed1)
+                      },
+                      {
+                          diviceName: 'Điều hòa',
+                          status: postCheckBox(airStatus_bed1),
+                          auto: postCheckBox(airAuto_bed1),
+                          speedFanAir: postChangeValue(airSpeedFan_bed1),
+                          tempAir: postChangeValue(airTemp_bed1)
+                      },
+                      {
+                          diviceName: 'Tivi',
+                          status: postCheckBox(teleStatus_bed1),
+                          auto: postCheckBox(teleAuto_bed1),
+                          volume: postChangeValue(teleVolume_bed1),
+                          channel: postDisplaySelected(teleChannel_bed1)
+                      },
+                      {
+                          diviceName: 'Quạt',
+                          status: postCheckBox(fanStatus_bed1),
+                          auto: postCheckBox(fanAuto_bed1),
+                          speedFan: postChangeValue(fanSpeed_bed1)
+                      },
+                      {
+                          diviceName: 'Máy phun sương',
+                          status: postCheckBox(nebulStatus_bed1),
+                          auto: postCheckBox(nebulAuto_bed1)
+                      },
+                      {
+                          diviceName: 'Rèm cửa',
+                          status: postCheckBox(curtainStatus_bed1),
+                          auto: postCheckBox(curtainAuto_bed1)
+                      },
+                      {
+                          diviceName: 'Cửa sổ',
+                          status: postCheckBox(windowStatus_bed1),
+                          auto: postCheckBox(windowAuto_bed1)
+                      },
+                      {
+                          diviceName: 'Cửa',
+                          status: postCheckBox(doorStatus_bed1)
+                      }
+                  ]  
+          }
+
+          if (path == '/bedroom-2') {
+            cache.room[2].roomDevice = [
+                      {
+                          diviceName: 'Đèn',
+                          status: postCheckBox(lampStatus_bed2),
+                          auto: postCheckBox(lampAuto_bed2)
+                      },
+                      {
+                          diviceName: 'Điều hòa',
+                          status: postCheckBox(airStatus_bed2),
+                          auto: postCheckBox(airAuto_bed2),
+                          speedFanAir: postChangeValue(airSpeedFan_bed2),
+                          tempAir: postChangeValue(airTemp_bed2)
+                      },
+                      {
+                          diviceName: 'Tivi',
+                          status: postCheckBox(teleStatus_bed2),
+                          auto: postCheckBox(teleAuto_bed2),
+                          volume: postChangeValue(teleVolume_bed2),
+                          channel: postDisplaySelected(teleChannel_bed2)
+                      },
+                      {
+                          diviceName: 'Quạt',
+                          status: postCheckBox(fanStatus_bed2),
+                          auto: postCheckBox(fanAuto_bed2),
+                          speedFan: postChangeValue(fanSpeed_bed2)
+                      },
+                      {
+                          diviceName: 'Máy phun sương',
+                          status: postCheckBox(nebulStatus_bed2),
+                          auto: postCheckBox(nebulAuto_bed2)
+                      },
+                      {
+                          diviceName: 'Rèm cửa',
+                          status: postCheckBox(curtainStatus_bed2),
+                          auto: postCheckBox(curtainAuto_bed2)
+                      },
+                      {
+                          diviceName: 'Cửa sổ',
+                          status: postCheckBox(windowStatus_bed2),
+                          auto: postCheckBox(windowAuto_bed2)
+                      },
+                      {
+                          diviceName: 'Cửa',
+                          status: postCheckBox(doorStatus_bed2)
+                      }
+                  ]  
+          }
+
+          if (path == '/kitchen') {
+            cache.room[3].roomDevice = [
+                      {
+                          diviceName: 'Đèn',
+                          status: postCheckBox(lampStatus_kit),
+                          auto: postCheckBox(lampAuto_kit)
+                      },
+                      {
+                          diviceName: 'Quạt',
+                          status: postCheckBox(fanStatus_kit),
+                          auto: postCheckBox(fanAuto_kit),
+                          speedFan: postChangeValue(fanSpeed_kit)
+                      },
+                      {
+                          diviceName: 'Bếp điện',
+                          status: postCheckBox(stoveStatus_kit),
+                          auto: postCheckBox(stoveAuto_kit),
+                          timer: postChangeValue(stoveTimer_kit)
+                      },
+                      {
+                          diviceName: 'Máy hút mùi',
+                          status: postCheckBox(hoodStatus_kit),
+                          auto: postCheckBox(hoodAuto_kit)
+                      }
+                  ]
+            
+          }
+
+          if (path == '/bathroom') {
+          cache.room[4].roomDevice = [
+                    {
+                      diviceName: 'Đèn',
+                      status: postCheckBox(lampStatus_bath),
+                      auto: postCheckBox(lampAuto_bath)
+                    },
+                    {
+                        diviceName: 'Nóng lạnh',
+                        status: postCheckBox(heaterStatus_bath),
+                        auto: postCheckBox(heaterAuto_bath),
+                        timer: postChangeValue(heaterTimer_bath)
+                    },
+                    {
+                        diviceName: 'Máy giặt',
+                        status: postCheckBox(washingStatus_bath),
+                        auto: postCheckBox(washingAuto_bath),
+                        mode: postDisplaySelected(washingMode_bath),
+                        water: postDisplaySelected(washingWater_bath )
+                    }
+                ]
+        }
+
+        }
+        var json = JSON.stringify(cache);
+        postData(json);
+      })
+    }, 1000);
+  });
+
+  
   var today = new Date();
   
   document.getElementById("current-time").innerHTML = today.toDateString();
 </script>
-
-<!-- form validation and sending to mail -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

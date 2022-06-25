@@ -20,7 +20,8 @@ exports.getLogin = (req, res, next) => {
     if (!req.isAuthenticated()) {
         res.render("login", {
             title: "Đăng nhập",
-            message: `${message}`
+            message: `${message}`,
+            user: req.user
         });
     } else {
         res.redirect("/");
@@ -47,6 +48,7 @@ exports.getVerifyHome = (req, res, next) => {
 exports.postVerifyHome = (req, res, next) => {
     var homeName = req.body.homeName;
     var homeId = req.body.homeId;
+    
 
     Homes.findOne({homeName: homeName})
         .then( home => {
@@ -54,10 +56,14 @@ exports.postVerifyHome = (req, res, next) => {
                 req.flash("error", "Home's name hoặc Home's id không đúng!");
                 return res.redirect("/verify-home")
             }
-            req.user.homeModel[home.homeIndex] = {
-                homeName: homeName,
-                homeId: homeId
-            }
+            req.user.homeModel.push(
+                {
+                    homeName: homeName,
+                    homeId: homeId
+                }
+            )
+
+            req.user.homeNameCurrent = homeName;
 
             req.user.save();
             return res.redirect("/");
@@ -74,7 +80,8 @@ exports.getSignUp = (req, res, next) => {
     if (!req.isAuthenticated()) {
         res.render("register", {
             title: "Đăng ký",
-            message: `${message}`
+            message: `${message}`,
+            user: req.user
         });
     } else {
         res.redirect("/");
@@ -124,6 +131,7 @@ exports.getVerifyEmail = async (req, res, next) => {
         console.log(error)
         res.status(500).json({errors: error.message})
     }
+
 
     const message = req.flash("error")[0];
     res.render("verify-email", {

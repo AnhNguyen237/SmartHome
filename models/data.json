@@ -1,0 +1,205 @@
+{
+    "homeName": "SmartHome1",
+    "temp": 25,
+    "humd": 70,
+    "room": [
+        {
+            "roomName": "Phòng khách",
+            "roomDevice": [
+                {
+                    "diviceName": "Đèn",
+                    "status": false,
+                    "auto": false
+                },
+                {
+                    "diviceName": "Điều hòa",
+                    "status": false,
+                    "auto": false,
+                    "speedFanAir": 4,
+                    "tempAir": 27
+                },
+                {
+                    "diviceName": "Tivi",
+                    "status": false,
+                    "auto": false,
+                    "volume": 10,
+                    "channel": "VTV2"
+                },
+                {
+                    "diviceName": "Quạt",
+                    "status": false,
+                    "auto": false,
+                    "speedFan": 3
+                },
+                {
+                    "diviceName": "Máy phun sương",
+                    "status": false,
+                    "auto": false
+                },
+                {
+                    "diviceName": "Rèm cửa",
+                    "status": false,
+                    "auto": false
+                },
+                {
+                    "diviceName": "Cửa sổ",
+                    "status": false,
+                    "auto": false
+                },
+                {
+                    "diviceName": "Cửa",
+                    "status": false
+                }
+            ]
+        },
+        {
+            "roomName": "Phòng ngủ 1",
+            "roomDevice": [
+                {
+                    "diviceName": "Đèn",
+                    "status": false,
+                    "auto": false
+                },
+                {
+                    "diviceName": "Điều hòa",
+                    "status": false,
+                    "auto": false,
+                    "speedFanAir": 4,
+                    "tempAir": 27
+                },
+                {
+                    "diviceName": "Tivi",
+                    "status": false,
+                    "auto": false,
+                    "volume": 10,
+                    "channel": "VTV3"
+                },
+                {
+                    "diviceName": "Quạt",
+                    "status": false,
+                    "auto": false,
+                    "speedFan": 3
+                },
+                {
+                    "diviceName": "Máy phun sương",
+                    "status": false,
+                    "auto": false
+                },
+                {
+                    "diviceName": "Rèm cửa",
+                    "status": false,
+                    "auto": false
+                },
+                {
+                    "diviceName": "Cửa sổ",
+                    "status": false,
+                    "auto": false
+                },
+                {
+                    "diviceName": "Cửa",
+                    "status": false
+                }
+            ]
+        },
+        {
+            "roomName": "Phòng ngủ 2",
+            "roomDevice": [
+                {
+                    "diviceName": "Đèn",
+                    "status": false,
+                    "auto": false
+                },
+                {
+                    "diviceName": "Điều hòa",
+                    "status": false,
+                    "auto": false,
+                    "speedFanAir": 4,
+                    "tempAir": 27
+                },
+                {
+                    "diviceName": "Tivi",
+                    "status": false,
+                    "auto": false,
+                    "volume": 10,
+                    "channel": "VTV2"
+                },
+                {
+                    "diviceName": "Quạt",
+                    "status": false,
+                    "auto": false,
+                    "speedFan": 3
+                },
+                {
+                    "diviceName": "Máy phun sương",
+                    "status": false,
+                    "auto": false
+                },
+                {
+                    "diviceName": "Rèm cửa",
+                    "status": false,
+                    "auto": false
+                },
+                {
+                    "diviceName": "Cửa sổ",
+                    "status": false,
+                    "auto": false
+                },
+                {
+                    "diviceName": "Cửa",
+                    "status": false
+                }
+            ]
+        },
+        {
+            "roomName": "Nhà bếp",
+            "roomDevice": [
+                {
+                    "diviceName": "Đèn",
+                    "status": false,
+                    "auto": false
+                },
+                {
+                    "diviceName": "Quạt",
+                    "status": false,
+                    "auto": false,
+                    "speedFan": 3
+                },
+                {
+                    "diviceName": "Bếp điện",
+                    "status": false,
+                    "auto": false,
+                    "timer": 10
+                },
+                {
+                    "diviceName": "Máy hút mùi",
+                    "status": false,
+                    "auto": false
+                }
+            ]
+        },
+        {
+            "roomName": "Phòng tắm",
+            "roomDevice": [
+                {
+                    "diviceName": "Đèn",
+                    "status": false,
+                    "auto": false
+                },
+                {
+                    "diviceName": "Nóng lạnh",
+                    "status": false,
+                    "auto": false,
+                    "timer": 14
+                },
+                {
+                    "diviceName": "Máy giặt",
+                    "status": false,
+                    "auto": false,
+                    "mode": "normal",
+                    "water": "medium"
+                }
+            ]
+        }
+    ],
+    "updateTime": 12
+}

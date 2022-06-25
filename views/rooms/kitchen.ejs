@@ -5,7 +5,7 @@
                 <i class="fa-solid fa-kitchen-set"></i>
             </div>
             <div class="room-name">
-                Kitchen
+                Nhà Bếp
             </div>
         </div>
         <div class="date-time">
@@ -13,13 +13,13 @@
             <div class="basic-info">
                 <div class="temperature">
                     <div>
-                        <h1 class="text-value">25&degC</h1>
+                        <h1 class="text-value temp"><%=data.temp%>&#37</h1>
                     </div>
                 </div>
                 <div class="space-column"></div>
                 <div class="humidity">
                     <div>
-                        <h1 class="text-value">25&#37</h1>
+                        <h1 class="text-value humd"><%=data.humd%>&#37</h1>
                     </div>
                 </div>
             </div>
@@ -30,26 +30,37 @@
     <div class="room-control">
         <div class="control-title">
             <h1 class="control-title-content">
-                Remote Control
+                Hiệu Chỉnh Thiết Bị
             </h1>
         </div>
+        <% var roomDevice = data.room[3].roomDevice %>
         <div class="equipment-box">
             <div class="equipment-row">
                 <div class="equipment lamp">
                     <div class="equipment-status">
                         <div class="status">
-                            <h1 class="equipment-status-title">Status</h1>
-                            <div class="button r" id="button-1">
-                                <input type="checkbox" class="checkbox"/>
+                            <h1 class="equipment-status-title">Trạng thái</h1>
+                            <div class="button r post" id="button-1">
+                                <% if(roomDevice[0].status) { %>
+                                <input id="lampStatus-kit" type="checkbox" class="checkbox"/>
+                                <% }else { %>
+                                    <input id="lampStatus-kit" type="checkbox" class="checkbox" checked/>
+                                <% } %>
+                                
                                 <div class="knobs"></div>
                                 <div class="layer"></div>
                             </div>
                         </div>
                         <div class="shims" style="flex:1"></div>
                         <div class="auto-mode">
-                            <h1 class="equipment-status-title">Auto</h1>
-                            <div class="button r" id="button-1">
-                                <input type="checkbox" class="checkbox"/>
+                            <h1 class="equipment-status-title">Tự động</h1>
+                            <div class="button r post" id="button-1">
+                                <% if(roomDevice[0].auto) { %>
+                                <input id="lampAuto-kit" type="checkbox" class="checkbox"/>
+                                <% }else { %>
+                                    <input id="lampAuto-kit" type="checkbox" class="checkbox" checked/>
+                                <% } %>
+                                
                                 <div class="knobs"></div>
                                 <div class="layer"></div>
                             </div>
@@ -59,247 +70,152 @@
                         <div class="images lamp-img"></div>
                         <div class="to-remote">
                             <a href="#">
-                                <h2 class="quipment-name">Lamp</h2>
+                                <h2 class="quipment-name">Đèn</h2>
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="equipment air-conditioner">
+                <div class="equipment fan">
                     <div class="equipment-status">
                         <div class="status">
-                            <h1 class="equipment-status-title">Status</h1>
-                            <div class="button r" id="button-1">
-                                <input type="checkbox" class="checkbox"/>
+                            <h1 class="equipment-status-title">Trạng thái</h1>
+                            <div class="button r post" id="button-1">
+                                <% if(roomDevice[1].auto) { %>
+                                <input id="fanStatus-kit" type="checkbox" class="checkbox"/>
+                                <% }else { %>
+                                    <input id="fanStatus-kit" type="checkbox" class="checkbox" checked/>
+                                <% } %>
+                                
                                 <div class="knobs"></div>
                                 <div class="layer"></div>
                             </div>
                         </div>
                         <div class="shims" style="flex:1"></div>
                         <div class="auto-mode">
-                            <h1 class="equipment-status-title">Auto</h1>
-                            <div class="button r" id="button-1">
-                                <input type="checkbox" class="checkbox"/>
+                            <h1 class="equipment-status-title">Tự động</h1>
+                            <div class="button r post" id="button-1">
+                                <% if(roomDevice[1].auto) { %>
+                                    <input id="fanAuto-kit" type="checkbox" class="checkbox"/>
+                                    <% }else { %>
+                                        <input id="fanAuto-kit" type="checkbox" class="checkbox" checked/>
+                                    <% } %>
+                                
                                 <div class="knobs"></div>
                                 <div class="layer"></div>
                             </div>
                         </div>
                     </div>
                     <div class="equipment-img">
-                        <div class="images air-conditioner-img"></div>
+                        <div class="images fan-img"></div>
                         <div class="to-remote">
                             <a href="#">
-                                <h2 class="quipment-name">Air Conditioner</h2>
+                                <h2 class="quipment-name">Quạt</h2>
                             </a>
                         </div>
                     </div>
                     <div class="basic-function">
                         <div class="remote-air-fan">
-                            <h2 class="air-fan-name">Speed Fan</h2>
+                            <h2 class="air-fan-name">Tốc độ</h2>
                             <div class="buttons_added">
-                                <input class="minus is-form" type="button" value="-">
-                                    <input aria-label="quantity" class="input-qty" max="5" min="0" name="" type="number" value="3">
-                                        <input class="plus is-form" type="button" value="+"></div>
+                                <input class="minus is-form post" type="button" value="-">
+                                    <input id="fanSpeed-kit" aria-label="quantity" class="input-qty" max="5" min="0" name="" type="number" value="<%=roomDevice[1].speedFan%>">
+                                        <input class="plus is-form post" type="button" value="+">
                                     </div>
-                                    <div class="remote-air-temperature">
-                                        <h2 class="change-temperature">Temperature</h2>
-                                        <div class="buttons_added">
-                                            <input class="minus is-form" type="button" value="-">
-                                                <input aria-label="quantity" class="input-qty" max="35" min="15" name="" type="number" value="24">
-                                                    <input class="plus is-form" type="button" value="+"></div>
-                                                </div>
-                                            </div>
-                                        </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <div class="equipment-row">
+                <div class="equipment stove">
+                    <div class="equipment-status">
+                        <div class="status">
+                            <h1 class="equipment-status-title">Trạng thái</h1>
+                            <div class="button r post" id="button-1">
+                                <% if(roomDevice[2].auto) { %>
+                                    <input id="stoveStatus-kit" type="checkbox" class="checkbox"/>
+                                    <% }else { %>
+                                        <input id="stoveStatus-kit" type="checkbox" class="checkbox" checked/>
+                                    <% } %>
+                                
+                                <div class="knobs"></div>
+                                <div class="layer"></div>
+                            </div>
+                        </div>
+                        <div class="shims" style="flex:1"></div>
+                        <div class="auto-mode">
+                            <h1 class="equipment-status-title">Tự động</h1>
+                            <div class="button r post" id="button-1">
+                                <% if(roomDevice[2].auto) { %>
+                                    <input id="stoveAuto-kit" type="checkbox" class="checkbox"/>
+                                    <% }else { %>
+                                        <input id="stoveAuto-kit" type="checkbox" class="checkbox" checked/>
+                                    <% } %>
+                                
+                                <div class="knobs"></div>
+                                <div class="layer"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="equipment-img">
+                        <div class="images stove-img"></div>
+                        <div class="to-remote">
+                            <a href="#">
+                                <h2 class="quipment-name">Bếp điện</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="basic-function">
+                        <div class="remote-air-fan">
+                            <h2 class="air-fan-name">Hẹn giờ tắt</h2>
+                            <div class="buttons_added">
+                                <input class="minus is-form post" type="button" value="-">
+                                    <input id="stoveTimer-kit" aria-label="quantity" class="input-qty" max="120" min="1" name="" type="number" value="<%=roomDevice[2].timer%>">
+                                        <input class="plus is-form post" type="button" value="+">
                                     </div>
-                                    <div class="equipment-row">
-                                        <div class="equipment television">
-                                            <div class="equipment-status">
-                                                <div class="status">
-                                                    <h1 class="equipment-status-title">Status</h1>
-                                                    <div class="button r" id="button-1">
-                                                        <input type="checkbox" class="checkbox"/>
-                                                        <div class="knobs"></div>
-                                                        <div class="layer"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="equipment-img">
-                                                <div class="images television-img"></div>
-                                                <div class="to-remote">
-                                                    <a href="#">
-                                                        <h2 class="quipment-name">Television</h2>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="basic-function">
-                                                <div class="remote-air-fan">
-                                                    <h2 class="air-fan-name">volume</h2>
-                                                    <div class="buttons_added">
-                                                        <input class="minus is-form" type="button" value="-">
-                                                            <input aria-label="quantity" class="input-qty" max="5" min="0" name="" type="number" value="3">
-                                                                <input class="plus is-form" type="button" value="+"></div>
-                                                            </div>
-                                                            <div class="remote-air-temperature">
-                                                                <h2 class="change-temperature">Channel</h2>
-                                                                <div class="buttons_added">
-                                                                    <input class="minus is-form" type="button" value="-">
-                                                                        <input aria-label="quantity" class="input-qty" max="35" min="15" name="" type="number" value="24">
-                                                                            <input class="plus is-form" type="button" value="+"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="equipment fan">
-                                                                    <div class="equipment-status">
-                                                                        <div class="status">
-                                                                            <h1 class="equipment-status-title">Status</h1>
-                                                                            <div class="button r" id="button-1">
-                                                                                <input type="checkbox" class="checkbox"/>
-                                                                                <div class="knobs"></div>
-                                                                                <div class="layer"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="shims" style="flex:1"></div>
-                                                                        <div class="auto-mode">
-                                                                            <h1 class="equipment-status-title">Auto</h1>
-                                                                            <div class="button r" id="button-1">
-                                                                                <input type="checkbox" class="checkbox"/>
-                                                                                <div class="knobs"></div>
-                                                                                <div class="layer"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="equipment-img">
-                                                                        <div class="images fan-img"></div>
-                                                                        <div class="to-remote">
-                                                                            <a href="#">
-                                                                                <h2 class="quipment-name">Fan</h2>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="basic-function">
-                                                                        <div class="remote-air-fan">
-                                                                            <h2 class="air-fan-name">Speed Fan</h2>
-                                                                            <div class="buttons_added">
-                                                                                <input class="minus is-form" type="button" value="-">
-                                                                                    <input aria-label="quantity" class="input-qty" max="5" min="0" name="" type="number" value="3">
-                                                                                        <input class="plus is-form" type="button" value="+"></div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="equipment-row">
-                                                                            <div class="equipment door">
-                                                                                <div class="equipment-status">
-                                                                                    <div class="status">
-                                                                                        <h1 class="equipment-status-title">Status</h1>
-                                                                                        <div class="button r" id="button-1">
-                                                                                            <input type="checkbox" class="checkbox"/>
-                                                                                            <div class="knobs"></div>
-                                                                                            <div class="layer"></div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="equipment-img">
-                                                                                    <div class="images door-lock-img"></div>
-                                                                                    <div class="to-remote">
-                                                                                        <a href="#">
-                                                                                            <h2 class="quipment-name">Door</h2>
-                                                                                        </a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="equipment curtain">
-                                                                                <div class="equipment-status">
-                                                                                    <div class="status">
-                                                                                        <h1 class="equipment-status-title">Status</h1>
-                                                                                        <div class="button r" id="button-1">
-                                                                                            <input type="checkbox" class="checkbox"/>
-                                                                                            <div class="knobs"></div>
-                                                                                            <div class="layer"></div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="shims" style="flex:1"></div>
-                                                                                    <div class="auto-mode">
-                                                                                        <h1 class="equipment-status-title">Auto</h1>
-                                                                                        <div class="button r" id="button-1">
-                                                                                            <input type="checkbox" class="checkbox"/>
-                                                                                            <div class="knobs"></div>
-                                                                                            <div class="layer"></div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="equipment-img">
-                                                                                    <div class="images curtain-img"></div>
-                                                                                    <div class="to-remote">
-                                                                                        <a href="#">
-                                                                                            <h2 class="quipment-name">Curtain</h2>
-                                                                                        </a>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="basic-function">
-                                                                                    <div class="remote-air-fan">
-                                                                                        <h2 class="air-fan-name">Open</h2>
-                                                                                        <div class="buttons_added">
-                                                                                            <input class="minus is-form" type="button" value="-">
-                                                                                                <input aria-label="quantity" class="input-qty" max="5" min="0" name="" type="number" value="3">
-                                                                                                    <input class="plus is-form" type="button" value="+"></div>
-                                                                                                </div>
-                                                                                                <div class="remote-air-temperature">
-                                                                                                    <h2 class="change-temperature">Closes</h2>
-                                                                                                    <div class="buttons_added">
-                                                                                                        <input class="minus is-form" type="button" value="-">
-                                                                                                            <input aria-label="quantity" class="input-qty" max="35" min="15" name="" type="number" value="24">
-                                                                                                                <input class="plus is-form" type="button" value="+"></div>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="equipment-row">
-                                                                                                    <div class="equipment window">
-                                                                                                        <div class="equipment-status">
-                                                                                                            <div class="status">
-                                                                                                                <h1 class="equipment-status-title">Status</h1>
-                                                                                                                <div class="button r" id="button-1">
-                                                                                                                    <input type="checkbox" class="checkbox"/>
-                                                                                                                    <div class="knobs"></div>
-                                                                                                                    <div class="layer"></div>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                            <div class="shims" style="flex:1"></div>
-                                                                                                            <div class="auto-mode">
-                                                                                                                <h1 class="equipment-status-title">Auto</h1>
-                                                                                                                <div class="button r" id="button-1">
-                                                                                                                    <input type="checkbox" class="checkbox"/>
-                                                                                                                    <div class="knobs"></div>
-                                                                                                                    <div class="layer"></div>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <div class="equipment-img">
-                                                                                                            <div class="images window-img"></div>
-                                                                                                            <div class="to-remote">
-                                                                                                                <a href="#">
-                                                                                                                    <h2 class="quipment-name">Window</h2>
-                                                                                                                </a>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <div class="basic-function">
-                                                                                                            <div class="remote-air-fan">
-                                                                                                                <h2 class="air-fan-name">Open</h2>
-                                                                                                                <div class="buttons_added">
-                                                                                                                    <input class="minus is-form" type="button" value="-">
-                                                                                                                        <input aria-label="quantity" class="input-qty" max="5" min="0" name="" type="number" value="3">
-                                                                                                                            <input class="plus is-form" type="button" value="+"></div>
-                                                                                                                        </div>
-                                                                                                                        <div class="remote-air-temperature">
-                                                                                                                            <h2 class="change-temperature">Closes</h2>
-                                                                                                                            <div class="buttons_added">
-                                                                                                                                <input class="minus is-form" type="button" value="-">
-                                                                                                                                    <input aria-label="quantity" class="input-qty" max="35" min="15" name="" type="number" value="24">
-                                                                                                                                        <input class="plus is-form" type="button" value="+"></div>
-                                                                                                                                    </div>
-                                                                                                                                </div>
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                            </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="equipment hood">
+                    <div class="equipment-status">
+                        <div class="status">
+                            <h1 class="equipment-status-title">Trạng thái</h1>
+                            <div class="button r post" id="button-1">
+                                <% if(roomDevice[3].status) { %>
+                                    <input id="hoodStatus-kit" type="checkbox" class="checkbox"/>
+                                    <% }else { %>
+                                        <input id="hoodStatus-kit" type="checkbox" class="checkbox" checked/>
+                                    <% } %>
+                                
+                                <div class="knobs"></div>
+                                <div class="layer"></div>
+                            </div>
+                        </div>
+                        <div class="shims" style="flex:1"></div>
+                        <div class="auto-mode">
+                            <h1 class="equipment-status-title">Tự động</h1>
+                            <div class="button r post" id="button-1">
+                                <% if(roomDevice[3].auto) { %>
+                                    <input id="hoodAuto-kit" type="checkbox" class="checkbox"/>
+                                    <% }else { %>
+                                        <input id="hoodAuto-kit" type="checkbox" class="checkbox" checked/>
+                                    <% } %>
+                                
+                                <div class="knobs"></div>
+                                <div class="layer"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="equipment-img">
+                        <div class="images hood-img"></div>
+                        <div class="to-remote">
+                            <a href="#">
+                                <h2 class="quipment-name">Máy hút mùi</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

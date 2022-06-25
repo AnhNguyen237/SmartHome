@@ -32,7 +32,11 @@ const userSchema = new mongoose.Schema({
         required: false
       }
     }
-  ]
+  ],
+  homeNameCurrent: {
+    type: String,
+    required: false
+  }
 });
 
 const User = mongoose.model('User', userSchema);

@@ -7,10 +7,6 @@ const userSchema = new mongoose.Schema({
   homeId: {
     type: String,
     required: true
-  },
-  homeIndex: {
-    type: Number,
-    require: true
   }
 });
 

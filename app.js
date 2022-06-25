@@ -11,6 +11,7 @@ const flash = require('connect-flash');
 const app = express();
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
+const dataRouter = require('./routes/data');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const compression = require('compression');
 app.use(compression());
@@ -56,6 +57,7 @@ require('./config/passport')(passport);
 
 app.use(authRouter);
 app.use(userRouter);
+app.use(dataRouter);
 
 let server = app.listen(process.env.PORT || 3000)
 

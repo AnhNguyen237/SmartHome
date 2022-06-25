@@ -1,11 +1,36 @@
 <div class="wrapper">
     <div class="gird">
-        <div class="header-navbar__items">
-            <div class="header__logo">
-                <a href="/">
-                    <h1 class="logo">
-                        <i class="fa-solid fa-house-signal"></i>SMART HOME</h1>
-                </a>
+        <div class="header-navbar__top">
+            <div class="change-device">
+                <ul>
+                    <li class="header-logined" style="display: none"></li>
+                    <% if(user && user.homeModel[0]) { %>
+                    <li class="header-logined">
+                        <a href="#" class="header-link">
+                            <i class="fa-solid fa-list-ol"></i>
+                            Danh mục SmartHome
+                        </a>
+                        <div class="header-account">
+                            <ul class="header-account__item">
+                                <% for (let x of user.homeModel) { %>
+                                <li>
+                                    <a href="/smart-home/<%= x.homeName %>" class="link-account">
+                                        <i class="fa-solid fa-house"></i>
+                                        <%= x.homeName %>
+                                    </a>
+                                </li>
+                                <% } %>
+                                <li>
+                                    <a href="/verify-home" class="link-account">
+                                        <i class="fa-solid fa-plus"></i>
+                                        Thêm mới
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <% } %>
+                </ul>
             </div>
             <div class="accounts">
                 <ul>
@@ -28,24 +53,35 @@
                                     <% if(!user.isAuthenticated) {%>
                                         <li>
                                             <a href="/verify-email" class="link-account">
-                                                <i class="fa-solid fa-envelope"></i>Xác thực email</a>
+                                                <i class="fa-solid fa-envelope"></i>Xác thực email
+                                            </a>
                                         </li>
                                     <% } else { %>
                                         <li>
                                             <a href="/change-password" class="link-account">
-                                                <i class="fa-solid fa-lock"></i>Đổi mật khẩu</a>
+                                                <i class="fa-solid fa-lock"></i>Đổi mật khẩu
+                                            </a>
                                         </li>
                                     <% } %>
                                     <li>
                                         <a href="/logout" class="link-account">
                                             <i class="fa-solid fa-right-from-bracket"></i>
-                                        </i>Đăng xuất</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                <% } %>
-            </ul>
+                                            Đăng xuất
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
         </div>
+        <div class="header-navbar__items">
+            <div class="header__logo">
+                <a href="/">
+                    <h1 class="logo">
+                        <i class="fa-solid fa-house-signal"></i>SMART HOME</h1>
+                </a>
+            </div>
     </div>
 </div></div>
