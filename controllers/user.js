@@ -6,7 +6,6 @@ const Homes = require("../models/home");
 const key = require("../key")
 var bcrypt = require("bcryptjs");
 var randomstring = require("randomstring");
-const User = require("../models/user");
 const GOOGLE_MAILER_CLIENT_ID = key.ClientID;
 const GOOGLE_MAILER_CLIENT_SECRET = key.ClientSecret;
 const GOOGLE_MAILER_REFRESH_TOKEN = key.RefreshToken;
@@ -55,18 +54,33 @@ exports.postVerifyHome = (req, res, next) => {
             if(!home || home.homeId != homeId) {
                 req.flash("error", "Home's name hoặc Home's id không đúng!");
                 return res.redirect("/verify-home")
+            } else {
+                return req.user;
             }
-            req.user.homeModel.push(
-                {
-                    homeName: homeName,
-                    homeId: homeId
+        })
+        .then(user => {
+            let check = false;
+            user.homeModel.forEach(x => {
+                if(x.homeName == homeName) {
+                    req.flash("error", "Home's name đã tồn tại!");
+                    return res.redirect("/verify-home");
+                } else {
+                    check = true;
                 }
-            )
-
-            req.user.homeNameCurrent = homeName;
-
-            req.user.save();
-            return res.redirect("/");
+            })
+            if(check) {
+                user.homeModel.push(
+                    {
+                        homeName: homeName,
+                        homeId: homeId
+                    }
+                )
+    
+                user.homeNameCurrent = homeName;
+    
+                user.save();
+                return res.redirect("/");
+            }
         })
 };
 

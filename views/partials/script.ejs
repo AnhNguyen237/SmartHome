@@ -181,6 +181,7 @@
   })
 
   $(document).ready(function(){
+    postData();
     let path = window.location.pathname;
     let lastUpdateTime;
     let cache;
@@ -337,7 +338,6 @@
         }
       });
     }, 500);
-
     setTimeout(function() {
       $('.post').click(function() {
         if(cache) {
@@ -539,9 +539,9 @@
                 ]
         }
 
-        }
         var json = JSON.stringify(cache);
         postData(json);
+        }
       })
     }, 1000);
   });
