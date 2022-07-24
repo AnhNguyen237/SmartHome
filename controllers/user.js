@@ -59,15 +59,19 @@ exports.postVerifyHome = (req, res, next) => {
             }
         })
         .then(user => {
-            let check = false;
-            user.homeModel.forEach(x => {
-                if(x.homeName == homeName) {
-                    req.flash("error", "Home's name đã tồn tại!");
-                    return res.redirect("/verify-home");
-                } else {
-                    check = true;
-                }
-            })
+            var check = false;
+            if(user.homeModel.length > 0) {
+                user.homeModel.forEach(x => {
+                    if(x.homeName == homeName) {
+                        req.flash("error", "Home's name đã tồn tại!");
+                        return res.redirect("/verify-home");
+                    } else {
+                        check = true;
+                    }
+                })
+            } else {
+                check = true;
+            }
             if(check) {
                 user.homeModel.push(
                     {
@@ -80,6 +84,8 @@ exports.postVerifyHome = (req, res, next) => {
     
                 user.save();
                 return res.redirect("/");
+            } else {
+                res.redirect("/verify-home");
             }
         })
 };

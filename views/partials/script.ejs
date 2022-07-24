@@ -188,7 +188,7 @@
 
     setInterval(function() {
       $.get("/data/get", function(data){
-        if(data && lastUpdateTime != data.updateTime) {
+        if(data.room && lastUpdateTime != data.updateTime) {
           console.log("Có cập nhật mới");
           cache = data;
           lastUpdateTime = data.updateTime;
@@ -337,7 +337,7 @@
           } 
         }
       });
-    }, 500);
+    }, 1000);
     setTimeout(function() {
       $('.post').click(function() {
         if(cache) {
@@ -543,7 +543,7 @@
         postData(json);
         }
       })
-    }, 1000);
+    }, 1100);
   });
 
   

@@ -13,13 +13,13 @@
             <div class='basic-info'>
                 <div class='temperature'>
                     <div>
-                        <h1 class='text-value temp'><%=data.temp%>&degC</h1>
+                        <h1 class='text-value temp'></h1>
                     </div>
                 </div>
                 <div class='space-column'></div>
                 <div class='humidity'>
                     <div>
-                        <h1 class='text-value humd'><%=data.humd%>&#37</h1>
+                        <h1 class='text-value humd'></h1>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,6 @@
                 Hiệu Chỉnh Thiết Bị
             </h1>
         </div>
-        <% var roomDevice = data.room[0].roomDevice %>
         <div class='equipment-box'>
             <div class='equipment-row'>
                 <div class='equipment lamp'>
@@ -41,11 +40,9 @@
                         <div class='status'>
                             <h1 class='equipment-status-title'>Trạng thái</h1>
                             <div class='button r post' id='button-1'>
-                                <% if(roomDevice[0].status) { %>
+                                
                                 <input id="lampStatus-liv" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                <input id="lampStatus-liv" type='checkbox' class='checkbox' checked/>
-                                <% } %>
+                                
                                 <div class='knobs'></div>
                                 <div class='layer'></div>
                             </div>
@@ -54,11 +51,9 @@
                         <div class='auto-mode'>
                             <h1 class='equipment-status-title'>Tự động</h1>
                             <div class='button r post' id='button-1'>
-                                <% if(roomDevice[0].auto) { %>
+                                
                                 <input id="lampAuto-liv" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                <input id="lampAuto-liv" type='checkbox' class='checkbox' checked/>
-                                <% } %>
+                                
                                 <div class='knobs'></div>
                                 <div class='layer'></div>
                             </div>
@@ -78,11 +73,9 @@
                         <div class='status'>
                             <h1 class='equipment-status-title'>Trạng thái</h1>
                             <div class='button r post' id='button-1'>
-                                <% if(roomDevice[1].status) { %>
+                                
                                     <input id="airStatus-liv" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="airStatus-liv" type='checkbox' class='checkbox' checked/>
-                                <% } %>
+                                
                                
                                 <div class='knobs'></div>
                                 <div class='layer'></div>
@@ -92,11 +85,9 @@
                         <div class='auto-mode'>
                             <h1 class='equipment-status-title'>Tự động</h1>
                             <div class='button r post' id='button-1'>
-                                <% if(roomDevice[1].auto) { %>
+                                
                                     <input id="airAuto-liv" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="airAuto-liv" type='checkbox' class='checkbox' checked/>
-                                <% } %>
+                                
                                 
                                 <div class='knobs'></div>
                                 <div class='layer'></div>
@@ -116,7 +107,7 @@
                             <h2 class='air-fan-name'>Tốc độ</h2>
                             <div class='buttons_added'>
                                 <input class='minus is-form post' type='button' value='-'>
-                                    <input id="airSpeedFan-liv" aria-label='quantity' class='input-qty' max='5' min='0' name='speed-fan-air' type='number' value='<%=roomDevice[1].speedFanAir%>'>
+                                    <input id="airSpeedFan-liv" aria-label='quantity' class='input-qty' max='5' min='0' name='speed-fan-air' type='number'>
                                         <input class='plus is-form post' type='button' value='+'>
                             </div>
                         </div>
@@ -124,7 +115,7 @@
                             <h2 class='change-temperature'>Nhiệt độ</h2>
                             <div class='buttons_added'>
                                 <input class='minus is-form post' type='button' value='-'>
-                                    <input id="airTemp-liv" aria-label='quantity' class='input-qty' max='35' min='10' name='' type='number' value='<%=roomDevice[1].tempAir%>'>
+                                    <input id="airTemp-liv" aria-label='quantity' class='input-qty' max='35' min='10' name='' type='number'>
                                         <input class='plus is-form post' type='button' value='+'>
                                     </div>
                         </div>
@@ -137,11 +128,9 @@
                         <div class='status'>
                             <h1 class='equipment-status-title'>Trạng thái</h1>
                             <div class='button r post' id='button-1'>
-                                <% if(roomDevice[2].status) { %>
+                                
                                     <input id="teleStatus-liv" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="teleStatus-liv" type='checkbox' class='checkbox' checked/>
-                                <% } %>
+                                
                                
                                 <div class='knobs'></div>
                                 <div class='layer'></div>
@@ -151,11 +140,9 @@
                         <div class='auto-mode'>
                             <h1 class='equipment-status-title'>Tự động</h1>
                             <div class='button r post' id='button-1'>
-                                <% if(roomDevice[2].auto) { %>
+                                
                                     <input id="teleAuto-liv" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="teleAuto-liv" type='checkbox' class='checkbox' checked/>
-                                <% } %>
+                                
                                 
                                 <div class='knobs'></div>
                                 <div class='layer'></div>
@@ -175,7 +162,7 @@
                             <h2 class='air-fan-name'>Âm lượng</h2>
                             <div class='buttons_added'>
                                 <input class='minus is-form post' type='button' value='-'>
-                                    <input id="teleVolume-liv" aria-label='quantity' class='input-qty' max='20' min='0' name='' type='number' value='<%=roomDevice[2].volume%>'>
+                                    <input id="teleVolume-liv" aria-label='quantity' class='input-qty' max='20' min='0' name='' type='number'>
                                         <input class='plus is-form post' type='button' value='+'>
                                     </div>
                         </div>
@@ -194,11 +181,9 @@
                         <div class='status'>
                             <h1 class='equipment-status-title'>Trang thái</h1>
                             <div class='button r post' id='button-1'>
-                                <% if(roomDevice[3].status) { %>
+                                
                                     <input id="fanStatus-liv" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="fanStatus-liv" type='checkbox' class='checkbox' checked/>
-                                <% } %>
+                                
                                
                                 <div class='knobs'></div>
                                 <div class='layer'></div>
@@ -208,11 +193,9 @@
                         <div class='auto-mode'>
                             <h1 class='equipment-status-title'>Tự động</h1>
                             <div class='button r post' id='button-1'>
-                                <% if(roomDevice[3].auto) { %>
+                                
                                     <input id="fanAuto-liv" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="fanAuto-liv" type='checkbox' class='checkbox' checked/>
-                                <% } %>
+                                
                                 
                                 <div class='knobs'></div>
                                 <div class='layer'></div>
@@ -232,7 +215,7 @@
                             <h2 class='air-fan-name'>Tốc độ</h2>
                             <div class='buttons_added'>
                                 <input class='minus is-form post' type='button' value='-'>
-                                    <input id="fanSpeed-liv" aria-label='quantity' class='input-qty' max='5' min='0' name='' type='number' value='<%=roomDevice[3].speedFan%>'>
+                                    <input id="fanSpeed-liv" aria-label='quantity' class='input-qty' max='5' min='0' name='' type='number'>
                                         <input class='plus is-form post' type='button' value='+'>
                                     </div>
                         </div>
@@ -245,11 +228,9 @@
                         <div class='status'>
                             <h1 class='equipment-status-title'>Trạng thái</h1>
                             <div class='button r post' id='button-1'>
-                                <% if(roomDevice[4].status) { %>
+                                
                                     <input id="nebulStatus-liv" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="nebulStatus-liv" type='checkbox' class='checkbox' checked/>
-                                <% } %>
+                                
                                 
                                 <div class='knobs'></div>
                                 <div class='layer'></div>
@@ -259,11 +240,9 @@
                         <div class='auto-mode'>
                             <h1 class='equipment-status-title'>Tự động</h1>
                             <div class='button r post' id='button-1'>
-                                <% if(roomDevice[4].auto) { %>
+                                
                                     <input id="nebulAuto-liv" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="nebulAuto-liv" type='checkbox' class='checkbox' checked/>
-                                <% } %>
+                                
                               
                                 <div class='knobs'></div>
                                 <div class='layer'></div>
@@ -284,11 +263,9 @@
                         <div class='status'>
                             <h1 class='equipment-status-title'>Trạng thái</h1>
                             <div class='button r post' id='button-1'>
-                                <% if(roomDevice[5].status) { %>
+                                
                                     <input id="curtainStatus-liv" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="curtainStatus-liv" type='checkbox' class='checkbox' checked/>
-                                <% } %>
+                                
                                 
                                 <div class='knobs'></div>
                                 <div class='layer'></div>
@@ -298,11 +275,9 @@
                         <div class='auto-mode'>
                             <h1 class='equipment-status-title'>Tự động</h1>
                             <div class='button r post' id='button-1'>
-                                <% if(roomDevice[5].auto) { %>
+                                
                                     <input id="curtainAuto-liv" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="curtainAuto-liv" type='checkbox' class='checkbox' checked/>
-                                <% } %>
+                                
                                 <div class='knobs'></div>
                                 <div class='layer'></div>
                             </div>
@@ -324,11 +299,9 @@
                         <div class='status'>
                             <h1 class='equipment-status-title'>Trạng thái</h1>
                             <div class='button r post' id='button-1'>
-                                <% if(roomDevice[6].status) { %>
+                                
                                     <input id="windowStatus-liv" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="windowStatus-liv" type='checkbox' class='checkbox' checked/>
-                                <% } %>
+                                
                                 
                                 <div class='knobs'></div>
                                 <div class='layer'></div>
@@ -338,11 +311,9 @@
                         <div class='auto-mode'>
                             <h1 class='equipment-status-title'>Tự động</h1>
                             <div class='button r post' id='button-1'>
-                                <% if(roomDevice[6].auto) { %>
+                                
                                     <input id="windowAuto-liv" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="windowAuto-liv" type='checkbox' class='checkbox' checked/>
-                                <% } %>
+                                
                                 
                                 <div class='knobs'></div>
                                 <div class='layer'></div>
@@ -363,11 +334,9 @@
                         <div class='status'>
                             <h1 class='equipment-status-title'>Trạng thái</h1>
                             <div class='button r post' id='button-1'>
-                                <% if(roomDevice[7].status) { %>
+                                
                                     <input id="doorStatus-liv" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="doorStatus-liv" type='checkbox' class='checkbox' checked/>
-                                <% } %>
+                                
                                 
                                 <div class='knobs'></div>
                                 <div class='layer'></div>

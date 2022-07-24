@@ -118,29 +118,27 @@ var cache;
 
 exports.postData = (req, res) => {
     cache = req.body;
+    console.log(cache);
     cache.updateTime = new Date();
-    console.log(cache)
-
     Data.findOne({homeName: cache.homeName}, function(err, data) {
-        if(data) {
-            data.homeName = cache.homeName;
-            data.temp = cache.temp;
-            data.humd = cache.humd;
-            data.room = cache.room;
-            data.updateTime = cache.updateTime;
+      if(data) {
+          data.homeName = cache.homeName;
+          data.temp = cache.temp;
+          data.humd = cache.humd;
+          data.room = cache.room;
+          data.updateTime = cache.updateTime;
 
-            data.save();
-        }else {
-            new Data(cache).save();
-        }
-    })
-
+          data.save();
+      }else {
+          new Data(cache).save();
+      }
+  })
     res.redirect('/data/get');
 };
 
 exports.getData = (req, res) => {
-    console.log(cache);
-    res.send(cache);
+  console.log(cache)
+  res.send(cache);
 };
 
 exports.getChangeDevice = (req, res) => {
