@@ -1,189 +1,164 @@
 <div class="right-container">
-    <div class="room-detail">
-        <div class="title-room">
-            <div class="room-icon">
-                <i class="fa-solid fa-bath"></i>
-            </div>
-            <div class="room-name">
-                Phòng Tắm
-            </div>
-        </div>
-        <div class="date-time">
-            <div id="current-time" class="text-content"></div>
-            <div class="basic-info">
-                <div class="temperature">
-                    <div>
-                        <h1 class="text-value temp"><%=data.temp%>&degC</h1>
-                    </div>
-                </div>
-                <div class="space-column humd"></div>
-                <div class="humidity">
-                    <div>
-                        <h1 class="text-value"><%=data.humd%>&#37</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="room-detail">
+    <div class="title-room">
+      <div class="room-icon">
+        <i class="fa-solid fa-bath"></i>
+      </div>
+      <div class="room-name">Phòng Tắm</div>
     </div>
-    <div class="space-row"></div>
+    <div class="date-time">
+      <div id="current-time" class="text-content"></div>
+      <div class="basic-info">
+        <div class="temperature">
+          <div>
+            <h1 class="text-value temp"></h1>
+          </div>
+        </div>
+        <div class="space-column humd"></div>
+        <div class="humidity">
+          <div>
+            <h1 class="text-value"></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="space-row"></div>
 
-    <div class="room-control">
-        <div class="control-title">
-            <h1 class="control-title-content">
-                Hiệu Chỉnh Thiết Bị
-            </h1>
-        </div>
-        <% var roomDevice = data.room[4].roomDevice %>
-        <div class="equipment-box">
-            <div class="equipment-row">
-                <div class="equipment lamp">
-                    <div class="equipment-status">
-                        <div class="status">
-                            <h1 class="equipment-status-title">Trạng thái</h1>
-                            <div class="button r post" id="button-1">
-                                <% if(roomDevice[0].status) { %>
-                                    <input id="lampStatus-bath" type="checkbox" class="checkbox"/>
-                                    <% }else { %>
-                                        <input id="lampStatus-bath" type="checkbox" class="checkbox" checked/>
-                                    <% } %>
-                                
-                                <div class="knobs"></div>
-                                <div class="layer"></div>
-                            </div>
-                        </div>
-                        <div class="shims" style="flex:1"></div>
-                        <div class="auto-mode">
-                            <h1 class="equipment-status-title">Tự động</h1>
-                            <div class="button r post" id="button-1">
-                                <% if(roomDevice[0].auto) { %>
-                                    <input id="lampAuto-bath" type="checkbox" class="checkbox"/>
-                                    <% }else { %>
-                                        <input id="lampAuto-bath" type="checkbox" class="checkbox" checked/>
-                                    <% } %>
-                                
-                                <div class="knobs"></div>
-                                <div class="layer"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="equipment-img">
-                        <div class="images lamp-img"></div>
-                        <div class="to-remote">
-                            <a href="#">
-                                <h2 class="quipment-name">Đèn</h2>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="equipment electric-water-heater">
-                    <div class="equipment-status">
-                        <div class="status">
-                            <h1 class="equipment-status-title">Trạng thái</h1>
-                            <div class="button r post" id="button-1">
-                                <% if(roomDevice[1].status) { %>
-                                    <input id="heaterStatus-bath" type="checkbox" class="checkbox"/>
-                                    <% }else { %>
-                                        <input id="heaterStatus-bath" type="checkbox" class="checkbox" checked/>
-                                    <% } %>
-                                
-                                <div class="knobs"></div>
-                                <div class="layer"></div>
-                            </div>
-                        </div>
-                        <div class="shims" style="flex:1"></div>
-                        <div class="auto-mode">
-                            <h1 class="equipment-status-title">Tự động</h1>
-                            <div class="button r post" id="button-1">
-                                <% if(roomDevice[1].status) { %>
-                                    <input id="heaterAuto-bath" type="checkbox" class="checkbox"/>
-                                    <% }else { %>
-                                        <input id="heaterAuto-bath" type="checkbox" class="checkbox" checked/>
-                                    <% } %>
-                                <div class="knobs"></div>
-                                <div class="layer"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="equipment-img">
-                        <div class="images heater-img"></div>
-                        <div class="to-remote">
-                            <a href="#">
-                                <h2 class="quipment-name">Nóng lạnh</h2>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="basic-function">
-                        <div class="remote-air-fan">
-                            <h2 class="air-fan-name">Hẹn giờ tắt</h2>
-                            <div class="buttons_added">
-                                <input class="minus is-form post" type="button" value="-">
-                                <input id="heaterTimer-bath" aria-label="quantity" class="input-qty" max="30" min="3" name="" type="number" value='<%=roomDevice[1].timer%>'>
-                                <input class="plus is-form post" type="button" value="+">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="equipment-row">
-                <div class="equipment washing-machine">
-                    <div class="equipment-status">
-                        <div class="status">
-                            <h1 class="equipment-status-title">Trạng thái</h1>
-                            <div class="button r post" id="button-1">
-                                <% if(roomDevice[2].status) { %>
-                                    <input id="washingStatus-bath" type="checkbox" class="checkbox"/>
-                                    <% }else { %>
-                                        <input id="washingStatus-bath" type="checkbox" class="checkbox" checked/>
-                                    <% } %>
-                                
-                                <div class="knobs"></div>
-                                <div class="layer"></div>
-                            </div>
-                        </div>
-                        <div class="shims" style="flex:1"></div>
-                        <div class="auto-mode">
-                            <h1 class="equipment-status-title">Tự động</h1>
-                            <div class="button r post" id="button-1">
-                                <% if(roomDevice[2].auto) { %>
-                                    <input id="washingAuto-bath" type="checkbox" class="checkbox" checked/>
-                                    <% }else { %>
-                                        <input id="washingAuto-bath" type="checkbox" class="checkbox" checked/>
-                                    <% } %>
-                                
-                                <div class="knobs"></div>
-                                <div class="layer"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="equipment-img">
-                        <div class="images washing-machine-img"></div>
-                        <div class="to-remote">
-                            <a href="#">
-                                <h2 class="quipment-name">Máy giặt</h2>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="basic-function">
-                        <div class="remote-air-fan">
-                            <h2 class="air-fan-name">Chế độ</h2>
-                            <select id="washingMode-bath" class="form-select" aria-label="Select channel">
-                                <option class="mode-bath" value="normal">Tiêu chuẩn</option>
-                                <option class="mode-bath" value="strong">Giặt mạnh</option>
-                                <option class="mode-bath" value="fast">Giặt nhanh</option>
-                                <option class="mode-bath" value="dry">Vắt Khô</option>
-                            </select>
-                        </div>
-                        <div class="remote-air-temperature">
-                            <h2 class="change-temperature">Mực nước</h2>
-                            <select id="washingWater-bath" class="form-select" aria-label="Select channel">
-                                <option class="water-bath" value="low">Thấp</option>
-                                <option class="water-bath" value="medium">Trung bình</option>
-                                <option class="water-bath" value="high">Cao</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="room-control">
+    <div class="control-title">
+      <h1 class="control-title-content">Hiệu Chỉnh Thiết Bị</h1>
     </div>
+
+    <div class="equipment-box">
+      <div class="equipment-row">
+        <div class="equipment lamp">
+          <div class="equipment-status">
+            <div class="status">
+              <h1 class="equipment-status-title">Trạng thái</h1>
+              <div class="button r post" id="button-1">
+                <input id="lampStatus-bath" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+            <div class="shims" style="flex: 1"></div>
+            <div class="auto-mode">
+              <h1 class="equipment-status-title">Tự động</h1>
+              <div class="button r post" id="button-1">
+                <input id="lampAuto-bath" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="equipment-img">
+            <div class="images lamp-img"></div>
+            <div class="to-remote">
+              <a href="#">
+                <h2 class="quipment-name">Đèn</h2>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="equipment electric-water-heater">
+          <div class="equipment-status">
+            <div class="status">
+              <h1 class="equipment-status-title">Trạng thái</h1>
+              <div class="button r post" id="button-1">
+                <input id="heaterStatus-bath" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+            <div class="shims" style="flex: 1"></div>
+            <div class="auto-mode">
+              <h1 class="equipment-status-title">Tự động</h1>
+              <div class="button r post" id="button-1">
+                <input id="heaterAuto-bath" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="equipment-img">
+            <div class="images heater-img"></div>
+            <div class="to-remote">
+              <a href="#">
+                <h2 class="quipment-name">Nóng lạnh</h2>
+              </a>
+            </div>
+          </div>
+          <div class="basic-function">
+            <div class="remote-air-fan">
+              <h2 class="air-fan-name">Hẹn giờ tắt</h2>
+              <div class="buttons_added">
+                <input class="minus is-form post" type="button" value="-" />
+                <input id="heaterTimer-bath" aria-label="quantity" class="input-qty" max="30" min="3" name="" type="number" />
+                <input class="plus is-form post" type="button" value="+" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="equipment-row">
+        <div class="equipment washing-machine">
+          <div class="equipment-status">
+            <div class="status">
+              <h1 class="equipment-status-title">Trạng thái</h1>
+              <div class="button r post" id="button-1">
+                <input id="washingStatus-bath" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+            <div class="shims" style="flex: 1"></div>
+            <div class="auto-mode">
+              <h1 class="equipment-status-title">Tự động</h1>
+              <div class="button r post" id="button-1">
+                <input id="washingAuto-bath" type="checkbox" class="checkbox" checked />
+
+                <input id="washingAuto-bath" type="checkbox" class="checkbox" checked />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="equipment-img">
+            <div class="images washing-machine-img"></div>
+            <div class="to-remote">
+              <a href="#">
+                <h2 class="quipment-name">Máy giặt</h2>
+              </a>
+            </div>
+          </div>
+          <div class="basic-function">
+            <div class="remote-air-fan">
+              <h2 class="air-fan-name">Chế độ</h2>
+              <select id="washingMode-bath" class="form-select" aria-label="Select channel">
+                <option class="mode-bath" value="normal">Tiêu chuẩn</option>
+                <option class="mode-bath" value="strong">Giặt mạnh</option>
+                <option class="mode-bath" value="fast">Giặt nhanh</option>
+                <option class="mode-bath" value="dry">Vắt Khô</option>
+              </select>
+            </div>
+            <div class="remote-air-temperature">
+              <h2 class="change-temperature">Mực nước</h2>
+              <select id="washingWater-bath" class="form-select" aria-label="Select channel">
+                <option class="water-bath" value="low">Thấp</option>
+                <option class="water-bath" value="medium">Trung bình</option>
+                <option class="water-bath" value="high">Cao</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

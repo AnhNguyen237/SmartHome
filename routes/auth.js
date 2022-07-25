@@ -17,9 +17,11 @@ router.get("/kitchen", authController.getKitchen);
 
 router.get("/bathroom", authController.getBathroom);
 
-router.post("/data/update", authController.postData);
+router.post("/data/update-server", authController.postDataServer);
+router.post("/data/update-client", authController.postDataClient);
 
-router.get("/data/get", authController.getData);
+router.get("/data/get-server", authController.getDataServer);
+router.get("/data/get-client", authController.getDataClient);
 
 router.get("/smart-home/:slug", authController.getChangeDevice);
 

@@ -1,389 +1,328 @@
-<div class='right-container'>
-    <div class='room-detail'>
-        <div class='title-room'>
-            <div class='room-icon'>
-                <i class='fa-solid fa-couch'></i>
-            </div>
-            <div id='roomName' class='room-name'>
-                Phòng Ngủ 1
-            </div>
-        </div>
-        <div class='date-time'>
-            <div id='current-time' class='text-content'></div>
-            <div class='basic-info'>
-                <div class='temperature'>
-                    <div>
-                        <h1 class='text-value temp'><%=data.temp%>&degC</h1>
-                    </div>
-                </div>
-                <div class='space-column'></div>
-                <div class='humidity'>
-                    <div>
-                        <h1 class='text-value humd'><%=data.humd%>&#37</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="right-container">
+  <div class="room-detail">
+    <div class="title-room">
+      <div class="room-icon">
+        <i class="fa-solid fa-couch"></i>
+      </div>
+      <div id="roomName" class="room-name">Phòng Ngủ 1</div>
     </div>
-    <div class='space-row'></div>
+    <div class="date-time">
+      <div id="current-time" class="text-content"></div>
+      <div class="basic-info">
+        <div class="temperature">
+          <div>
+            <h1 class="text-value temp"></h1>
+          </div>
+        </div>
+        <div class="space-column"></div>
+        <div class="humidity">
+          <div>
+            <h1 class="text-value humd"></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="space-row"></div>
 
-    <div class='room-control'>
-        <div class='control-title'>
-            <h1 class='control-title-content'>
-                Hiệu Chỉnh Thiết Bị
-            </h1>
-        </div>
-        <% var roomDevice = data.room[1].roomDevice %>
-        <div class='equipment-box'>
-            <div class='equipment-row'>
-                <div class='equipment lamp'>
-                    <div class='equipment-status'>
-                        <div class='status'>
-                            <h1 class='equipment-status-title'>Trạng thái</h1>
-                            <div class='button r post' id='button-1'>
-                                <% if(roomDevice[0].status) { %>
-                                <input id="lampStatus-bed1" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                <input id="lampStatus-bed1" type='checkbox' class='checkbox' checked/>
-                                <% } %>
-                                <div class='knobs'></div>
-                                <div class='layer'></div>
-                            </div>
-                        </div>
-                        <div class='shims' style='flex:1'></div>
-                        <div class='auto-mode'>
-                            <h1 class='equipment-status-title'>Tự động</h1>
-                            <div class='button r post' id='button-1'>
-                                <% if(roomDevice[0].auto) { %>
-                                <input id="lampAuto-bed1" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                <input id="lampAuto-bed1" type='checkbox' class='checkbox' checked/>
-                                <% } %>
-                                <div class='knobs'></div>
-                                <div class='layer'></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='equipment-img'>
-                        <div class='images lamp-img'></div>
-                        <div class='to-remote'>
-                            <a href='#'>
-                                <h2 class='quipment-name'>Đèn</h2>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class='equipment air-conditioner'>
-                    <div class='equipment-status'>
-                        <div class='status'>
-                            <h1 class='equipment-status-title'>Trạng thái</h1>
-                            <div class='button r post' id='button-1'>
-                                <% if(roomDevice[1].status) { %>
-                                    <input id="airStatus-bed1" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="airStatus-bed1" type='checkbox' class='checkbox' checked/>
-                                <% } %>
-                               
-                                <div class='knobs'></div>
-                                <div class='layer'></div>
-                            </div>
-                        </div>
-                        <div class='shims' style='flex:1'></div>
-                        <div class='auto-mode'>
-                            <h1 class='equipment-status-title'>Tự động</h1>
-                            <div class='button r post' id='button-1'>
-                                <% if(roomDevice[1].auto) { %>
-                                    <input id="airAuto-bed1" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="airAuto-bed1" type='checkbox' class='checkbox' checked/>
-                                <% } %>
-                                
-                                <div class='knobs'></div>
-                                <div class='layer'></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='equipment-img'>
-                        <div class='images air-conditioner-img'></div>
-                        <div class='to-remote'>
-                            <a href='#'>
-                                <h2 class='quipment-name'>Điều hòa</h2>
-                            </a>
-                        </div>
-                    </div>
-                    <div class='basic-function'>
-                        <div class='remote-air-fan'>
-                            <h2 class='air-fan-name'>Tốc độ</h2>
-                            <div class='buttons_added'>
-                                <input class='minus is-form post' type='button' value='-'>
-                                    <input id="airSpeedFan-bed1" aria-label='quantity' class='input-qty' max='5' min='0' name='speed-fan-air' type='number' value='<%=roomDevice[1].speedFanAir%>'>
-                                        <input class='plus is-form post' type='button' value='+'>
-                            </div>
-                        </div>
-                        <div class='remote-air-temperature'>
-                            <h2 class='change-temperature'>Nhiệt độ</h2>
-                            <div class='buttons_added'>
-                                <input class='minus is-form post' type='button' value='-'>
-                                    <input id="airTemp-bed1" aria-label='quantity' class='input-qty' max='35' min='10' name='' type='number' value='<%=roomDevice[1].tempAir%>'>
-                                        <input class='plus is-form post' type='button' value='+'>
-                                    </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class='equipment-row'>
-                <div class='equipment television'>
-                    <div class='equipment-status'>
-                        <div class='status'>
-                            <h1 class='equipment-status-title'>Trạng thái</h1>
-                            <div class='button r post' id='button-1'>
-                                <% if(roomDevice[2].status) { %>
-                                    <input id="teleStatus-bed1" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="teleStatus-bed1" type='checkbox' class='checkbox' checked/>
-                                <% } %>
-                               
-                                <div class='knobs'></div>
-                                <div class='layer'></div>
-                            </div>
-                        </div>
-                        <div class='shims' style='flex:1'></div>
-                        <div class='auto-mode'>
-                            <h1 class='equipment-status-title'>Tự động</h1>
-                            <div class='button r post' id='button-1'>
-                                <% if(roomDevice[2].auto) { %>
-                                    <input id="teleAuto-bed1" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="teleAuto-bed1" type='checkbox' class='checkbox' checked/>
-                                <% } %>
-                                
-                                <div class='knobs'></div>
-                                <div class='layer'></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='equipment-img'>
-                        <div class='images television-img'></div>
-                        <div class='to-remote'>
-                            <a href='#'>
-                                <h2 class='quipment-name'>Tivi</h2>
-                            </a>
-                        </div>
-                    </div>
-                    <div class='basic-function'>
-                        <div class='remote-air-fan'>
-                            <h2 class='air-fan-name'>Âm lượng</h2>
-                            <div class='buttons_added'>
-                                <input class='minus is-form post' type='button' value='-'>
-                                    <input id="teleVolume-bed1" aria-label='quantity' class='input-qty' max='20' min='0' name='' type='number' value='<%=roomDevice[2].volume%>'>
-                                        <input class='plus is-form post' type='button' value='+'>
-                                    </div>
-                        </div>
-                        <div class='remote-air-temperature'>
-                            <h2 class='change-temperature'>Channel</h2>
-                            <select id="teleChannel-bed1" class="form-select post" aria-label="Select channel">
-                                <option class="chan-bed1" value="VTV1">VTV1</option>
-                                <option class="chan-bed1" value="VTV2">VTV2</option>
-                                <option class="chan-bed1" value="VTV3">VTV3</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class='equipment fan'>
-                    <div class='equipment-status'>
-                        <div class='status'>
-                            <h1 class='equipment-status-title'>Trang thái</h1>
-                            <div class='button r post' id='button-1'>
-                                <% if(roomDevice[3].status) { %>
-                                    <input id="fanStatus-bed1" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="fanStatus-bed1" type='checkbox' class='checkbox' checked/>
-                                <% } %>
-                               
-                                <div class='knobs'></div>
-                                <div class='layer'></div>
-                            </div>
-                        </div>
-                        <div class='shims' style='flex:1'></div>
-                        <div class='auto-mode'>
-                            <h1 class='equipment-status-title'>Tự động</h1>
-                            <div class='button r post' id='button-1'>
-                                <% if(roomDevice[3].auto) { %>
-                                    <input id="fanAuto-bed1" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="fanAuto-bed1" type='checkbox' class='checkbox' checked/>
-                                <% } %>
-                                
-                                <div class='knobs'></div>
-                                <div class='layer'></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='equipment-img'>
-                        <div class='images fan-img'></div>
-                        <div class='to-remote'>
-                            <a href='#'>
-                                <h2 class='quipment-name'>Quạt</h2>
-                            </a>
-                        </div>
-                    </div>
-                    <div class='basic-function'>
-                        <div class='remote-air-fan'>
-                            <h2 class='air-fan-name'>Tốc độ</h2>
-                            <div class='buttons_added'>
-                                <input class='minus is-form post' type='button' value='-'>
-                                    <input id="fanSpeed-bed1" aria-label='quantity' class='input-qty' max='5' min='0' name='' type='number' value='<%=roomDevice[3].speedFan%>'>
-                                        <input class='plus is-form post' type='button' value='+'>
-                                    </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class='equipment-row'>
-                <div class='equipment nebulizer'>
-                    <div class='equipment-status'>
-                        <div class='status'>
-                            <h1 class='equipment-status-title'>Trạng thái</h1>
-                            <div class='button r post' id='button-1'>
-                                <% if(roomDevice[4].status) { %>
-                                    <input id="nebulStatus-bed1" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="nebulStatus-bed1" type='checkbox' class='checkbox' checked/>
-                                <% } %>
-                                
-                                <div class='knobs'></div>
-                                <div class='layer'></div>
-                            </div>
-                        </div>
-                        <div class='shims' style='flex:1'></div>
-                        <div class='auto-mode'>
-                            <h1 class='equipment-status-title'>Tự động</h1>
-                            <div class='button r post' id='button-1'>
-                                <% if(roomDevice[4].auto) { %>
-                                    <input id="nebulAuto-bed1" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="nebulAuto-bed1" type='checkbox' class='checkbox' checked/>
-                                <% } %>
-                              
-                                <div class='knobs'></div>
-                                <div class='layer'></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='equipment-img'>
-                        <div class='images nebulizer-img'></div>
-                        <div class='to-remote'>
-                            <a href='#'>
-                                <h2 class='quipment-name'>Máy phun sương</h2>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class='equipment curtain'>
-                    <div class='equipment-status'>
-                        <div class='status'>
-                            <h1 class='equipment-status-title'>Trạng thái</h1>
-                            <div class='button r post' id='button-1'>
-                                <% if(roomDevice[5].status) { %>
-                                    <input id="curtainStatus-bed1" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="curtainStatus-bed1" type='checkbox' class='checkbox' checked/>
-                                <% } %>
-                                
-                                <div class='knobs'></div>
-                                <div class='layer'></div>
-                            </div>
-                        </div>
-                        <div class='shims' style='flex:1'></div>
-                        <div class='auto-mode'>
-                            <h1 class='equipment-status-title'>Tự động</h1>
-                            <div class='button r post' id='button-1'>
-                                <% if(roomDevice[5].auto) { %>
-                                    <input id="curtainAuto-bed1" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="curtainAuto-bed1" type='checkbox' class='checkbox' checked/>
-                                <% } %>
-                                <div class='knobs'></div>
-                                <div class='layer'></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='equipment-img'>
-                        <div class='images curtain-img'></div>
-                        <div class='to-remote'>
-                            <a href='#'>
-                                <h2 class='quipment-name'>Rèm cửa</h2>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class='equipment-row'>
-                <div class='equipment window'>
-                    <div class='equipment-status'>
-                        <div class='status'>
-                            <h1 class='equipment-status-title'>Trạng thái</h1>
-                            <div class='button r post' id='button-1'>
-                                <% if(roomDevice[6].status) { %>
-                                    <input id="windowStatus-bed1" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="windowStatus-bed1" type='checkbox' class='checkbox' checked/>
-                                <% } %>
-                                
-                                <div class='knobs'></div>
-                                <div class='layer'></div>
-                            </div>
-                        </div>
-                        <div class='shims' style='flex:1'></div>
-                        <div class='auto-mode'>
-                            <h1 class='equipment-status-title'>Tự động</h1>
-                            <div class='button r post' id='button-1'>
-                                <% if(roomDevice[6].auto) { %>
-                                    <input id="windowAuto-bed1" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="windowAuto-bed1" type='checkbox' class='checkbox' checked/>
-                                <% } %>
-                                
-                                <div class='knobs'></div>
-                                <div class='layer'></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='equipment-img'>
-                        <div class='images window-img'></div>
-                        <div class='to-remote'>
-                            <a href='#'>
-                                <h2 class='quipment-name'>Cửa sổ</h2>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class='equipment door'>
-                    <div class='equipment-status'>
-                        <div class='status'>
-                            <h1 class='equipment-status-title'>Trạng thái</h1>
-                            <div class='button r post' id='button-1'>
-                                <% if(roomDevice[7].status) { %>
-                                    <input id="doorStatus-bed1" type='checkbox' class='checkbox'/>
-                                <% }else { %>
-                                    <input id="doorStatus-bed1" type='checkbox' class='checkbox' checked/>
-                                <% } %>
-                                
-                                <div class='knobs'></div>
-                                <div class='layer'></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='equipment-img'>
-                        <div class='images door-lock-img'></div>
-                        <div class='to-remote'>
-                            <a href='#'>
-                                <h2 class='quipment-name'>Của chính</h2>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="room-control">
+    <div class="control-title">
+      <h1 class="control-title-content">Hiệu Chỉnh Thiết Bị</h1>
     </div>
+
+    <div class="equipment-box">
+      <div class="equipment-row">
+        <div class="equipment lamp">
+          <div class="equipment-status">
+            <div class="status">
+              <h1 class="equipment-status-title">Trạng thái</h1>
+              <div class="button r post" id="button-1">
+                <input id="lampStatus-bed1" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+            <div class="shims" style="flex: 1"></div>
+            <div class="auto-mode">
+              <h1 class="equipment-status-title">Tự động</h1>
+              <div class="button r post" id="button-1">
+                <input id="lampAuto-bed1" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="equipment-img">
+            <div class="images lamp-img"></div>
+            <div class="to-remote">
+              <a href="#">
+                <h2 class="quipment-name">Đèn</h2>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="equipment air-conditioner">
+          <div class="equipment-status">
+            <div class="status">
+              <h1 class="equipment-status-title">Trạng thái</h1>
+              <div class="button r post" id="button-1">
+                <input id="airStatus-bed1" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+            <div class="shims" style="flex: 1"></div>
+            <div class="auto-mode">
+              <h1 class="equipment-status-title">Tự động</h1>
+              <div class="button r post" id="button-1">
+                <input id="airAuto-bed1" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="equipment-img">
+            <div class="images air-conditioner-img"></div>
+            <div class="to-remote">
+              <a href="#">
+                <h2 class="quipment-name">Điều hòa</h2>
+              </a>
+            </div>
+          </div>
+          <div class="basic-function">
+            <div class="remote-air-fan">
+              <h2 class="air-fan-name">Tốc độ</h2>
+              <div class="buttons_added">
+                <input class="minus is-form post" type="button" value="-" />
+                <input id="airSpeedFan-bed1" aria-label="quantity" class="input-qty" max="5" min="0" name="speed-fan-air" type="number" />
+                <input class="plus is-form post" type="button" value="+" />
+              </div>
+            </div>
+            <div class="remote-air-temperature">
+              <h2 class="change-temperature">Nhiệt độ</h2>
+              <div class="buttons_added">
+                <input class="minus is-form post" type="button" value="-" />
+                <input id="airTemp-bed1" aria-label="quantity" class="input-qty" max="35" min="10" name="" type="number" />
+                <input class="plus is-form post" type="button" value="+" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="equipment-row">
+        <div class="equipment television">
+          <div class="equipment-status">
+            <div class="status">
+              <h1 class="equipment-status-title">Trạng thái</h1>
+              <div class="button r post" id="button-1">
+                <input id="teleStatus-bed1" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+            <div class="shims" style="flex: 1"></div>
+            <div class="auto-mode">
+              <h1 class="equipment-status-title">Tự động</h1>
+              <div class="button r post" id="button-1">
+                <input id="teleAuto-bed1" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="equipment-img">
+            <div class="images television-img"></div>
+            <div class="to-remote">
+              <a href="#">
+                <h2 class="quipment-name">Tivi</h2>
+              </a>
+            </div>
+          </div>
+          <div class="basic-function">
+            <div class="remote-air-fan">
+              <h2 class="air-fan-name">Âm lượng</h2>
+              <div class="buttons_added">
+                <input class="minus is-form post" type="button" value="-" />
+                <input id="teleVolume-bed1" aria-label="quantity" class="input-qty" max="20" min="0" name="" type="number" />
+                <input class="plus is-form post" type="button" value="+" />
+              </div>
+            </div>
+            <div class="remote-air-temperature">
+              <h2 class="change-temperature">Channel</h2>
+              <select id="teleChannel-bed1" class="form-select post" aria-label="Select channel">
+                <option class="chan-bed1" value="VTV1">VTV1</option>
+                <option class="chan-bed1" value="VTV2">VTV2</option>
+                <option class="chan-bed1" value="VTV3">VTV3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="equipment fan">
+          <div class="equipment-status">
+            <div class="status">
+              <h1 class="equipment-status-title">Trang thái</h1>
+              <div class="button r post" id="button-1">
+                <input id="fanStatus-bed1" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+            <div class="shims" style="flex: 1"></div>
+            <div class="auto-mode">
+              <h1 class="equipment-status-title">Tự động</h1>
+              <div class="button r post" id="button-1">
+                <input id="fanAuto-bed1" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="equipment-img">
+            <div class="images fan-img"></div>
+            <div class="to-remote">
+              <a href="#">
+                <h2 class="quipment-name">Quạt</h2>
+              </a>
+            </div>
+          </div>
+          <div class="basic-function">
+            <div class="remote-air-fan">
+              <h2 class="air-fan-name">Tốc độ</h2>
+              <div class="buttons_added">
+                <input class="minus is-form post" type="button" value="-" />
+                <input id="fanSpeed-bed1" aria-label="quantity" class="input-qty" max="5" min="0" name="" type="number" />
+                <input class="plus is-form post" type="button" value="+" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="equipment-row">
+        <div class="equipment nebulizer">
+          <div class="equipment-status">
+            <div class="status">
+              <h1 class="equipment-status-title">Trạng thái</h1>
+              <div class="button r post" id="button-1">
+                <input id="nebulStatus-bed1" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+            <div class="shims" style="flex: 1"></div>
+            <div class="auto-mode">
+              <h1 class="equipment-status-title">Tự động</h1>
+              <div class="button r post" id="button-1">
+                <input id="nebulAuto-bed1" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="equipment-img">
+            <div class="images nebulizer-img"></div>
+            <div class="to-remote">
+              <a href="#">
+                <h2 class="quipment-name">Máy phun sương</h2>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="equipment curtain">
+          <div class="equipment-status">
+            <div class="status">
+              <h1 class="equipment-status-title">Trạng thái</h1>
+              <div class="button r post" id="button-1">
+                <input id="curtainStatus-bed1" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+            <div class="shims" style="flex: 1"></div>
+            <div class="auto-mode">
+              <h1 class="equipment-status-title">Tự động</h1>
+              <div class="button r post" id="button-1">
+                <input id="curtainAuto-bed1" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="equipment-img">
+            <div class="images curtain-img"></div>
+            <div class="to-remote">
+              <a href="#">
+                <h2 class="quipment-name">Rèm cửa</h2>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="equipment-row">
+        <div class="equipment window">
+          <div class="equipment-status">
+            <div class="status">
+              <h1 class="equipment-status-title">Trạng thái</h1>
+              <div class="button r post" id="button-1">
+                <input id="windowStatus-bed1" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+            <div class="shims" style="flex: 1"></div>
+            <div class="auto-mode">
+              <h1 class="equipment-status-title">Tự động</h1>
+              <div class="button r post" id="button-1">
+                <input id="windowAuto-bed1" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="equipment-img">
+            <div class="images window-img"></div>
+            <div class="to-remote">
+              <a href="#">
+                <h2 class="quipment-name">Cửa sổ</h2>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="equipment door">
+          <div class="equipment-status">
+            <div class="status">
+              <h1 class="equipment-status-title">Trạng thái</h1>
+              <div class="button r post" id="button-1">
+                <input id="doorStatus-bed1" type="checkbox" class="checkbox" />
+
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="equipment-img">
+            <div class="images door-lock-img"></div>
+            <div class="to-remote">
+              <a href="#">
+                <h2 class="quipment-name">Của chính</h2>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

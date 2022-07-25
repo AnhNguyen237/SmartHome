@@ -114,31 +114,50 @@ exports.getBathroom = (req, res, next) => {
     })
 };
 
-var cache;
+var cacheServer;
+var cacheClient;
+var oldTime;
 
-exports.postData = (req, res) => {
-    cache = req.body;
-    console.log(cache);
-    cache.updateTime = new Date();
-    Data.findOne({homeName: cache.homeName}, function(err, data) {
-      if(data) {
-          data.homeName = cache.homeName;
-          data.temp = cache.temp;
-          data.humd = cache.humd;
-          data.room = cache.room;
-          data.updateTime = cache.updateTime;
-
-          data.save();
-      }else {
-          new Data(cache).save();
-      }
-  })
-    res.redirect('/data/get');
+// Gửi từ web
+exports.postDataServer = (req, res) => {
+    cacheServer = req.body;
+    console.log(cacheServer);
+    cacheServer.updateTime = new Date();
+    res.redirect('/data/get-server');
 };
 
-exports.getData = (req, res) => {
-  console.log(cache)
-  res.send(cache);
+// Gửi từ thiết bị
+exports.postDataClient = (req, res) => {
+  cacheClient = req.body;
+  console.log(cacheClient);
+  cacheClient.updateTime = new Date();
+  oldTime = cacheClient.updateTime;
+  res.redirect('/data/get-client');
+};
+
+// Nhận dữ liệu từ web
+exports.getDataServer = (req, res) => {
+  console.log(cacheServer)
+  res.send(cacheServer);
+};
+
+// Nhận dữ liệu từ thiết bị
+exports.getDataClient = (req, res) => {
+  console.log(cacheClient);
+  Data.findOne({homeName: cacheClient.homeName}, function(err, data) {
+    if(data) {
+        data.homeName = cacheClient.homeName;
+        data.temp = cacheClient.temp;
+        data.humd = cacheClient.humd;
+        data.room = cacheClient.room;
+        data.updateTime = cacheClient.updateTime;
+
+        data.save();
+    }else {
+        new Data(cacheClient).save();
+    }
+})
+  res.send(cacheClient);
 };
 
 exports.getChangeDevice = (req, res) => {

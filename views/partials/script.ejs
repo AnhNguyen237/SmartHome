@@ -23,7 +23,6 @@
     const windowAuto_liv = "windowAuto-liv";
     const nebulStatus_liv = "nebulStatus-liv";
     const nebulAuto_liv = "nebulAuto-liv";
-
     // Bedroom1
     const lampStatus_bed1 = "lampStatus-bed1";
     const lampAuto_bed1 = "lampAuto-bed1";
@@ -46,8 +45,6 @@
     const windowAuto_bed1 = "windowAuto-bed1";
     const nebulStatus_bed1 = "nebulStatus-bed1";
     const nebulAuto_bed1 = "nebulAuto-bed1";
-
-
     // Bedroom2
     const lampStatus_bed2 = "lampStatus-bed2";
     const lampAuto_bed2 = "lampAuto-bed2";
@@ -70,7 +67,6 @@
     const windowAuto_bed2 = "windowAuto-bed2";
     const nebulStatus_bed2 = "nebulStatus-bed2";
     const nebulAuto_bed2 = "nebulAuto-bed2";
-
     //Kitchen
     const lampAuto_kit = "lampAuto-kit";
     const lampStatus_kit = "lampStatus-kit";
@@ -82,8 +78,6 @@
     const stoveTimer_kit = "stoveTimer-kit";
     const hoodStatus_kit = "hoodStatus-kit";
     const hoodAuto_kit = "hoodAuto-kit";
-
-
     // Bathroom
     const lampStatus_bath = "lampStatus-bath";
     const lampAuto_bath = "lampAuto-bath";
@@ -96,8 +90,6 @@
     const washingWater_bath = "washingWater-bath";
     const mode_bath = "mode-bath";
     const water_bath = "water-bath";
-
-
     function getCheckBox(idCheck, device) {
     var deviceCheck = document.getElementById(idCheck);
     if(device) {
@@ -110,7 +102,6 @@
     var valueBox = document.getElementById(idValue);
     valueBox.value = device;
   }
-
   function getDisplaySelected(optionSelected, idSelect, selected) {
     var optionSelectedElement = document.getElementsByClassName(optionSelected);
     var options = document.getElementById(idSelect).children;
@@ -120,18 +111,15 @@
         }
     }
   };
-
   function postCheckBox(idCheck) {
     var deviceCheck = document.getElementById(idCheck);
     if(deviceCheck.checked) {return false;}
     else {return true;}
   }
-
   function postChangeValue(idValue) {
     var valueBox = document.getElementById(idValue);
     return valueBox.value;
   }
-
   function postDisplaySelected(idSelect) {
     var options = document.getElementById(idSelect).children;
  
@@ -141,7 +129,6 @@
           }
       }
   };
-
   function postData(data, callback) {
     var options = {
         method: 'POST',
@@ -150,7 +137,7 @@
         },
         body: data
     };
-    fetch('/data/update', options)
+    fetch('/data/update-server', options)
         .then(function(response) {
             response.json();
         })
@@ -159,7 +146,6 @@
             alert('Failed!!!');
         })
 }
-
   
   $('input.input-qty').each(function() {
     var $this = $(this),
@@ -179,35 +165,24 @@
       $this.attr('value', d).val(d)
     })
   })
-
   $(document).ready(function(){
     postData();
     let path = window.location.pathname;
     let lastUpdateTime;
     let cache;
-
     setInterval(function() {
-      $.get("/data/get", function(data){
+      $.get("/data/get-client", function(data){
         if(data.room && lastUpdateTime != data.updateTime) {
           console.log("Có cập nhật mới");
           cache = data;
           lastUpdateTime = data.updateTime;
-
-
           var temp = data.temp + "";
           var humd = data.humd + "";
-
-
           var Livingroom = data.room[0].roomDevice;
-
           var Bedroom1 = data.room[1].roomDevice;
-
           var Bedroom2 = data.room[2].roomDevice;
-
           var Kitchen = data.room[3].roomDevice;
-
           var Bathroom = data.room[4].roomDevice;
-
           var tempElement = document.getElementsByClassName("temp");
           var humdElement = document.getElementsByClassName("humd");
           for (let x of tempElement) {
@@ -216,7 +191,6 @@
           for (let x of humdElement) {
             x.innerHTML = humd + "&#37";
           }
-
           if(path == '/living-room' || path == '/') {
             // Conduct function Livingroom
             getCheckBox(lampStatus_liv, Livingroom[0].status);
@@ -228,14 +202,12 @@
             getCheckBox(curtainStatus_liv, Livingroom[5].status);
             getCheckBox(windowStatus_liv, Livingroom[6].status);
             getCheckBox(doorStatus_liv, Livingroom[7].status);
-
             getCheckBox(lampAuto_liv, Livingroom[0].auto); 
             getCheckBox(airAuto_liv, Livingroom[1].auto);
             getCheckBox(fanAuto_liv, Livingroom[3].auto);
             getCheckBox(nebulAuto_liv, Livingroom[4].auto);
             getCheckBox(curtainAuto_liv, Livingroom[5].auto);
             getCheckBox(windowAuto_liv, Livingroom[6].auto);
-
             getChangeValue(airSpeedFan_liv, Livingroom[1].speedFanAir);
             getChangeValue(airTemp_liv, Livingroom[1].tempAir);
             getChangeValue(teleVolume_liv, Livingroom[2].volume);
@@ -243,8 +215,6 @@
             getChangeValue(fanSpeed_liv, Livingroom[3].speedFan);
             // Conduct function Livingroom
           }
-
-
           if(path == '/bedroom-1') {
             // Conduct function Bedroom1
             getCheckBox(lampStatus_bed1, Bedroom1[0].status);
@@ -256,14 +226,12 @@
             getCheckBox(curtainStatus_bed1, Bedroom1[5].status);
             getCheckBox(windowStatus_bed1, Bedroom1[6].status);
             getCheckBox(doorStatus_bed1, Bedroom1[7].status);
-
             getCheckBox(lampAuto_bed1, Bedroom1[0].auto); 
             getCheckBox(airAuto_bed1, Bedroom1[1].auto);
             getCheckBox(fanAuto_bed1, Bedroom1[3].auto);
             getCheckBox(nebulAuto_bed1, Bedroom1[4].auto);
             getCheckBox(curtainAuto_bed1, Bedroom1[5].auto);
             getCheckBox(windowAuto_bed1, Bedroom1[6].auto);
-
             getChangeValue(airSpeedFan_bed1, Bedroom1[1].speedFanAir);
             getChangeValue(airTemp_bed1, Bedroom1[1].tempAir);
             getChangeValue(teleVolume_bed1, Bedroom1[2].volume);
@@ -271,8 +239,6 @@
             getChangeValue(fanSpeed_bed1, Bedroom1[3].speedFan);
             // Conduct function Bedroom1
           }
-
-
           if(path == '/bedroom-2') {
             // Conduct function Bedroom2
             getCheckBox(lampStatus_bed2, Bedroom2[0].status);
@@ -284,62 +250,51 @@
             getCheckBox(curtainStatus_bed2, Bedroom2[5].status);
             getCheckBox(windowStatus_bed2, Bedroom2[6].status);
             getCheckBox(doorStatus_bed2, Bedroom2[7].status);
-
             getCheckBox(lampAuto_bed2, Bedroom2[0].auto); 
             getCheckBox(airAuto_bed2, Bedroom2[1].auto);
             getCheckBox(fanAuto_bed2, Bedroom2[3].auto);
             getCheckBox(nebulAuto_bed2, Bedroom2[4].auto);
             getCheckBox(curtainAuto_bed2, Bedroom2[5].auto);
             getCheckBox(windowAuto_bed2, Bedroom2[6].auto);
-
             getChangeValue(airSpeedFan_bed2, Bedroom2[1].speedFanAir);
             getChangeValue(airTemp_bed2, Bedroom2[1].tempAir);
             getChangeValue(teleVolume_bed2, Bedroom2[2].volume);
             getDisplaySelected(chan_bed2, teleChannel_bed2, Bedroom2[2].channel)
             getChangeValue(fanSpeed_bed2, Bedroom2[3].speedFan);
             // Conduct function Bedroom2
-
           }
-
           if(path == '/kitchen') {
             // Conduct function Kitchen
             getCheckBox(lampStatus_kit, Kitchen[0].status);
             getCheckBox(fanStatus_kit, Kitchen[1].status);
             getCheckBox(stoveStatus_kit, Kitchen[2].status);
             getCheckBox(hoodStatus_kit, Kitchen[3].status);
-
             getCheckBox(lampAuto_kit, Kitchen[0].auto);
             getCheckBox(fanAuto_kit, Kitchen[1].auto);
             getCheckBox(stoveAuto_kit, Kitchen[2].auto);
             getCheckBox(hoodAuto_kit, Kitchen[3].auto);
-
             getChangeValue(fanSpeed_kit, Kitchen[1].speedFan);
             getChangeValue(stoveTimer_kit, Kitchen[2].timer);
             // Conduct function Kitchen
-
           }
-
           if(path == '/bathroom') {
             // Conduct function Bathroom
             getCheckBox(lampStatus_bath, Bathroom[0].status);
             getCheckBox(heaterStatus_bath, Bathroom[1].status);
             getCheckBox(washingStatus_bath, Bathroom[2].status);
-
             getCheckBox(lampAuto_bath, Bathroom[0].auto);
             getCheckBox(heaterAuto_bath, Bathroom[1].auto);
             getCheckBox(washingAuto_bath, Bathroom[2].auto);
-
             getChangeValue(heaterTimer_bath, Bathroom[1].timer);
-
             getDisplaySelected(mode_bath, washingMode_bath, Bathroom[2].mode)
             getDisplaySelected(water_bath, washingWater_bath, Bathroom[2].water)
             // Conduct function Bathroom
           } 
         }
       });
-    }, 1000);
-    setTimeout(function() {
-      $('.post').click(function() {
+    }, 500);
+    
+    $('.post').click(function() {
         if(cache) {
           if (path == '/living-room' || path == '/') {
           cache.room[0].roomDevice = [
@@ -389,7 +344,6 @@
                     }
                 ]
         }
-
           if (path == '/bedroom-1') {
             cache.room[1].roomDevice = [
                       {
@@ -438,7 +392,6 @@
                       }
                   ]  
           }
-
           if (path == '/bedroom-2') {
             cache.room[2].roomDevice = [
                       {
@@ -487,7 +440,6 @@
                       }
                   ]  
           }
-
           if (path == '/kitchen') {
             cache.room[3].roomDevice = [
                       {
@@ -515,7 +467,6 @@
                   ]
             
           }
-
           if (path == '/bathroom') {
           cache.room[4].roomDevice = [
                     {
@@ -538,14 +489,11 @@
                     }
                 ]
         }
-
         var json = JSON.stringify(cache);
         postData(json);
         }
       })
-    }, 1100);
   });
-
   
   var today = new Date();
   
